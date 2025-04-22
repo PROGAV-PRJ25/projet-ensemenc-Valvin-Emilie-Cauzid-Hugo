@@ -1,2 +1,2 @@
 // Différentes météos possibles, accessibles facilement grâce à une énumération
-public enum Meteo { Normal, Soleil, Canicule, Nuageux, Pluie, Orage, Neige }
+public enum Meteo { Normal = 1, Soleil, Canicule, Nuageux, Pluie, Orage, Neige }
