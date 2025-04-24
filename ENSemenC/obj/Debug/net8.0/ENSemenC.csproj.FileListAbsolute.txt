@@ -1,0 +1,5 @@
+C:\Users\hcauz\Documents\Bureau pas sur le bureau\Sup\Informatique\POO\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hcauz\Documents\Bureau pas sur le bureau\Sup\Informatique\POO\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.AssemblyInfoInputs.cache
+C:\Users\hcauz\Documents\Bureau pas sur le bureau\Sup\Informatique\POO\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.AssemblyInfo.cs
+C:\Users\hcauz\Documents\Bureau pas sur le bureau\Sup\Informatique\POO\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.csproj.CoreCompileInputs.cache
+C:\Users\hcauz\Documents\Bureau pas sur le bureau\Sup\Informatique\POO\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.sourcelink.json
