@@ -7,7 +7,7 @@ public abstract class Terrain
     public double retention { get; }
     private static double[] baseLuminosite = { 0.7, 0.75, 0.90, 1, 0.5, 0.35, 0.2 };
     // La valeur default est en indice 0, les autres valeurs à ajouter se mettront à la fin de la liste et de l'énumération
-    public static int tempActuelle { get; set; }
+    // public static int tempActuelle { get; set; }
     public static double luminosite { get; set; }
     public static Meteo meteo { get; set; }
     public static Saison saison { get; set; }
@@ -19,7 +19,7 @@ public abstract class Terrain
         this.retention = retention;
     }
 
-    public void MAJHumidite(double crue = 0)
+    public void Arroser(double crue = 0)
     {
         humidite += crue;
         humidite -= (1 - retention) * 0.01;
@@ -62,8 +62,8 @@ public abstract class Terrain
                 break;
 
             case Meteo.Neige:
-                luminosite = baseLuminosite[4] + Math.Pow(-1, rng.Next(0, 1)) * 0.01 * rng.Next(0, 20);
-                // Même valeur que Nuageux
+                luminosite = baseLuminosite[5] + Math.Pow(-1, rng.Next(0, 1)) * 0.01 * rng.Next(0, 20);
+                // Même valeur que Pluie
                 // A ajuster selon si utilisation % ou valeurs chiffrées
                 break;
 
@@ -74,9 +74,8 @@ public abstract class Terrain
         // A calculer selon la meteo avec des tables
     }
 
-    public void MAJTemperature()
-    {
-        // A calculer selon la meteo, la saison et les bornes de temp avec des tables
-    }
+    abstract public void MAJTemperature();
+    // A calculer selon la meteo, la saison et les bornes de temp avec des tables
+    // Même température pour tous les terrains de même type --> abstract ici et redéfinition dans classes héritées ?
 
 }
