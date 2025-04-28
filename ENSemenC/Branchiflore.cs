@@ -1,0 +1,5 @@
+public class Branchiflore : PlanteCommercialisable
+{
+    public Branchiflore(Terrain terrain) : base("Branchiflore", Saison.Automne, terrain, 0, 1, 0.60, 1.0, 0.1, 0.8, 5, 70, 50, 150)
+    { }
+}
