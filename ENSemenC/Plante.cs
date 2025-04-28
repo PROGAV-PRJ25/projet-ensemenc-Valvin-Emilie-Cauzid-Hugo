@@ -10,9 +10,10 @@ public abstract class Plante
     public double[] besoinsLuminosite { get; set; } //pareil que eau
     public int vitesseDeCroissance { get; set; } //défini par la plante, ses conditions de vie influent dessus;
     //calcul stade de croissance à laquelle est la plante, elle //par exemple 1-2-3-4 (voir 5 quand les fruits reviennent)
+    public int croissanceMin { get; set; } //stade de croissance minimale de la plante pour qu'elle produise
+    public int croissance { get; set; } //stade de croissance minimale de la plante pour qu'elle produise
     public int esperanceDeVie { get; set; } //âge de la plante évolue comme la croissance, stade maximal
     public int age { get; set; } //qui augmente avec le temps qui passe
-    public int croissanceMin { get; set; } //stade de croissance minimale de la plante pour qu'elle produise
     public bool vivante { get; set; }
     public Plante(string nom, string nature, Saison saisonPreferee, Terrain terrain, int espacement, int place, double besoinsEauMin, double besoinsEauMax, double besoinsLuminositeMin, double besoinsLuminositeMax, int vitesseDeCroissance, int esperanceDeVie, int croissanceMin)
     {
@@ -25,13 +26,14 @@ public abstract class Plante
         this.besoinsEau = new double[] { besoinsEauMin, besoinsEauMax };
         this.besoinsLuminosite = new double[] { besoinsLuminositeMin, besoinsLuminositeMax };
         this.vitesseDeCroissance = vitesseDeCroissance;
+        croissance = 0;
+        this.croissanceMin = croissanceMin;
         this.esperanceDeVie = esperanceDeVie;
         age = 0;
-        this.croissanceMin = croissanceMin;
         vivante = true;
     }
 
-    public abstract void Grandir();
+    public abstract void Grandir(int nbVoisins);
 
     public override string ToString()
     {
