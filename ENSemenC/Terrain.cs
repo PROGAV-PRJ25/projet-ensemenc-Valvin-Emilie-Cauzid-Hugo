@@ -22,12 +22,19 @@ public abstract class Terrain
         this.retention = retention;
     }
 
-    public void HumidificationSol(double crue = 0)
+    public void HumidificationSol(double crue = 0) //donne le taux d'humidité du sol après la pluie
     {
         humidite += crue;
     }
 
-    public void AdaptationSol()
+    // A mettre dans Simulation
+    // public void Arroser() //si joueur choisit d'arroser
+    // {
+    //     humidite ++;
+    //     //à ajuster en fonction de à quoi correspond arroser, on établit pourcentage qui reste le même à chaque fois
+    // }
+
+    public void AdaptationSol() //calcule en fonction du type de terrain l'humidité qu'il reste (ex: si cailloux ou herbe)
     {
         humidite -= (1 - retention) * 0.01;
         // A ajuster selon si utilisation % ou valeurs chiffrées
@@ -149,7 +156,6 @@ public abstract class Terrain
 
                     case Meteo.Neige:
                         temperature = baseTemperature[7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 1);
-                        // Même valeur que Pluie
                         break;
 
                     default:
@@ -185,7 +191,6 @@ public abstract class Terrain
 
                     case Meteo.Neige:
                         temperature = baseTemperature[7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 1);
-                        // Même valeur que Pluie
                         break;
 
                     default:
@@ -221,7 +226,6 @@ public abstract class Terrain
 
                     case Meteo.Neige:
                         temperature = baseTemperature[7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
-                        // Même valeur que Pluie
                         break;
 
                     default:
@@ -235,7 +239,7 @@ public abstract class Terrain
     
         
     }
-    // A calculer selon la meteo, la saison et les bornes de temp avec des tables
+    // A calculer selon la meteo, la saison et les bornes de temps avec des tables
     // Même température pour tous les terrains de même type --> abstract ici et redéfinition dans classes héritées ?
 
 }
