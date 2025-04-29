@@ -88,7 +88,8 @@ public abstract class Terrain
         // A calculer selon la meteo avec des tables
     }
 
-    abstract public void GererTemperature()
+    //abstract ; je sais pas si je dois le mettre parce que ça fait des problèmes avec et sans
+    public void GererTemperature()
     {
         switch (saison)
         {
