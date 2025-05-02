@@ -111,4 +111,6 @@ public abstract class Plante
     }
 
     public abstract void AfficherPlateau();
+    public abstract string AfficherPlateau2();
+    public abstract void GetCouleur();
 }

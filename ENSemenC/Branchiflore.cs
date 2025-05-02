@@ -9,4 +9,17 @@ public class Branchiflore : PlanteCommercialisable
         Console.Write($"B");
         Console.ResetColor();
     }
+
+    public override void GetCouleur()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+    }
+
+    public override string AfficherPlateau2()
+    {
+        return "B";
+        // Console.ForegroundColor = ConsoleColor.Green;
+        // Console.Write($"B");
+        // Console.ResetColor();
+    }
 }

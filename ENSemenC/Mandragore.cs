@@ -9,4 +9,17 @@ public class Mandragore : PlanteCommercialisable
         Console.Write($"M");
         Console.ResetColor();
     }
+
+    public override void GetCouleur()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+    }
+
+    public override string AfficherPlateau2()
+    {
+        return "M";
+        // Console.ForegroundColor = ConsoleColor.Green;
+        // Console.Write($"M");
+        // Console.ResetColor();
+    }
 }

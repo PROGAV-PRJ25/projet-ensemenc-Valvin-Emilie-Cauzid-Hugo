@@ -9,4 +9,17 @@ public class FruitEtoile : PlanteComestible
         Console.Write($"F");
         Console.ResetColor();
     }
+
+    public override void GetCouleur()
+    {
+        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+    }
+
+    public override string AfficherPlateau2()
+    {
+        return "F";
+        // Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        // Console.Write($"F");
+        // Console.ResetColor();
+    }
 }

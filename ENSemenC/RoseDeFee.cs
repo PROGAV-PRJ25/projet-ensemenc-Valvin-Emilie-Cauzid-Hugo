@@ -9,4 +9,17 @@ public class RoseDeFee : PlanteOrnementale
         Console.Write($"R");
         Console.ResetColor();
     }
+
+    public override void GetCouleur()
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+    }
+
+    public override string AfficherPlateau2()
+    {
+        return "R";
+        // Console.ForegroundColor = ConsoleColor.Cyan;
+        // Console.Write($"R");
+        // Console.ResetColor();
+    }
 }
