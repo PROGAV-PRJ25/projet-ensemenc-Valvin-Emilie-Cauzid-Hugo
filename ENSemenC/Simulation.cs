@@ -1,8 +1,8 @@
 public class Simulation
 {
     public List<Plante> plantes { get; set; }
-    public List<List<Terrain>> plateau { get; set; }
-    public List<List<Terrain>> nouveauPlateau { get; set; }
+    public List<List<Terrain?>> plateau { get; set; }
+    public List<List<Terrain?>> nouveauPlateau { get; set; }
     public List<List<string>> plateauAffiche { get; set; }
     // A afficher lorsque l'utilisateur veut ajouter un terrain 
     // Cette liste possède une colonne et une ligne de plus pour permettre au joueur d'étendre son terrain 
@@ -10,8 +10,8 @@ public class Simulation
     public Simulation()
     {
         plantes = new List<Plante> { };
-        plateau = new List<List<Terrain>> { };
-        nouveauPlateau = new List<List<Terrain>> { new List<Terrain> { } };
+        plateau = new List<List<Terrain?>> { };
+        nouveauPlateau = new List<List<Terrain?>> { new List<Terrain?> { } };
         plateauAffiche = new List<List<string>> { new List<string> { } };
     }
 
@@ -32,6 +32,7 @@ public class Simulation
         // --> semble être la meilleure solution pour le moment */
         Console.Clear();
 
+        /*
         // Création d'une liste de listes contenant " "
         List<string> ligne = new List<string> { };
         for (int i = 0; i < plateau.Count(); i++)
@@ -51,7 +52,7 @@ public class Simulation
         {
             positionPlante = plante.terrain.position;
             plateauAffiche[positionPlante[0]][positionPlante[1]] = plante.AfficherPlateau2();
-        }
+        } */
 
         int largeur = plateau.Count;
         int longueur = plateau[0].Count;
@@ -68,17 +69,28 @@ public class Simulation
             Console.Write(" \t[ ");
             for (int j = 0; j < longueur; j++)
             {
-                // On passe ensuite dans tout le plateau en affichant les lettres si besoin
-                if (plateauAffiche[i][j] != " ")
+                // On passe ensuite dans tout le plateau en affichant les lettres si la case possède un terrain et s'il possède une plante
+                if (plateau[i][j] != null)
                 {
-                    plateau[i][j].plante.GetCouleur();
-                    // Si on donne un argument plante alors pas besoin de préenregistrer les lettres 
-                    // On peut juste passer à travers tout le tableau et si .plante != null alors appel bonnes méthodes
-                    // Sinon " "
+                    if (plateau[i][j]!.plante != null)
+                    {
+                        plateau[i][j]!.plante!.AfficherPlateau();
+                        // le ! sert à affirmer que la valeur ne peux pas être null
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
                 }
-                // écriture de la valeur en i,j
-                Console.Write($"{plateauAffiche[i][j]}");
-                Console.ResetColor();
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("X");
+                    Console.ResetColor();
+                }
+                /*// écriture de la valeur en i,j
+                // Console.Write($"{plateauAffiche[i][j]}");
+                // Console.ResetColor();*/
 
                 // séparateur
                 if (j != longueur - 1)
