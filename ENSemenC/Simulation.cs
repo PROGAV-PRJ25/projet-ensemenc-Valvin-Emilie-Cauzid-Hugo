@@ -3,16 +3,69 @@ public class Simulation
     public List<Plante> plantes { get; set; }
     public List<List<Terrain?>> plateau { get; set; }
     public List<List<Terrain?>> nouveauPlateau { get; set; }
-    public List<List<string>> plateauAffiche { get; set; }
     // A afficher lorsque l'utilisateur veut ajouter un terrain 
-    // Cette liste possède une colonne et une ligne de plus pour permettre au joueur d'étendre son terrain 
+    // Cette liste possède une colonne et une ligne vide de plus pour permettre au joueur d'étendre son terrain
+    // Mettre à jour plateau après (méthode à coder)
+    public List<List<string>> plateauAffiche { get; set; }
 
     public Simulation()
     {
         plantes = new List<Plante> { };
+        // Initialisation en temps que terrain de taille 1x1 vide
         plateau = new List<List<Terrain?>> { };
-        nouveauPlateau = new List<List<Terrain?>> { new List<Terrain?> { } };
+        // Initialisation en temps que terrain de taille 2x2 vide
+        nouveauPlateau = new List<List<Terrain?>> { new List<Terrain?> { null } };
         plateauAffiche = new List<List<string>> { new List<string> { } };
+    }
+
+    public void AgrandirPlateau(bool ajoutLigne) // ajouter "=true" ? 
+    {
+        if (ajoutLigne)
+        {
+            List<Terrain?> nouvelleLigne = new List<Terrain?> { };
+            List<Terrain?> nouvelleLigneNP = new List<Terrain?> { };
+            for (int i = 0; i < nouveauPlateau[0].Count(); i++)
+            {
+                if (i < plateau[0].Count())
+                {
+                    nouvelleLigne.Add(null);
+                }
+                nouvelleLigneNP.Add(null);
+            }
+            plateau.Add(nouvelleLigne);
+            nouveauPlateau.Add(nouvelleLigneNP);
+        }
+        else
+        {
+            for (int i = 0; i < nouveauPlateau.Count(); i++)
+            {
+                if (i < plateau.Count())
+                {
+                    plateau[i].Add(null);
+                }
+                nouveauPlateau[i].Add(null);
+            }
+        }
+    }
+    // Sert à agrandir plateau (et nouveauPlateau ?) lorsque l'utilisateur veut ajouter des plantes hors des limites déjà définies
+    // Pour nouveauPlateau si ajout ligne faire boucle selon nb de valeurs puis add
+    // si colonne faire une boucle dans toutes les lignes et ajouter 1 null
+    // Pour plateau si ligne faire boucle selon nb de valeurs + test pour savoir bonne colonne 
+    // si colonne boucle sur toutes les lignes + test pour savoir quelle colonne rajouter valeur
+
+    public void AjouterPlante(int[] position, Plante plante)
+    {
+        if (position[0] > plateau[0].Count())
+        {
+            AgrandirPlateau(false);
+        }
+        else if (position[1] > plateau.Count())
+        {
+            AgrandirPlateau(true);
+        }
+        plateau[position[1]][position[0]]!.plante = plante;
+        plante.terrain = plateau[position[1]][position[0]]!;
+        // Vérifier que ce n'est pas null !!!
     }
 
     public void AfficherPlateau()
