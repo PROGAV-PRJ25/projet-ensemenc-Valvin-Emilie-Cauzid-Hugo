@@ -5,7 +5,7 @@ public abstract class Terrain
     public double[][] baseTemperature;
     //Printemps = 1, Ete = 2, Automne = 3, Hiver = 4
     // Normal = 1, Soleil, Canicule, Nuageux, Pluie, Orage, Neige 
-    public static double temperature { get; set; }
+    public double temperature { get; set; }
     public int[]? position { get; set; }
     public double humidite { get; set; }
     public double retention { get; }
