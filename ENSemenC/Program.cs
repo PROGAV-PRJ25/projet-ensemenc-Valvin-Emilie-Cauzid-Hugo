@@ -1,4 +1,4 @@
-﻿// Créer des terrains (penser à la météo et la saison associées)
+﻿// Créer des terrains et des plantes pour tester (penser à la météo et la saison associées)
 
 // Vérifier que la MAJ de la luminosité et de l'humidité marchent bien
 

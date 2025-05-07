@@ -3,7 +3,6 @@ public abstract class Terrain
     private Random rng = new Random();
     public string typeTerrain { get; }
     public double[][] baseTemperature;
-    // = {new double[]{12.1, 18.0, 25.0, 12.5, 10.0, 12.0, 0.0}, new double[] {20.4, 30.0, 45.0, 22.0, 19.5, 28.0, 0.0}, new double[] {13.4, 25.0, 30.0, 15.0, 16.5, 20.0, 0.0}, new double[] {0.7, 10.0,20.0,5.0,8.0,12.0,0.0},};
     //Printemps = 1, Ete = 2, Automne = 3, Hiver = 4
     // Normal = 1, Soleil, Canicule, Nuageux, Pluie, Orage, Neige 
     public static double temperature { get; set; }
@@ -26,17 +25,11 @@ public abstract class Terrain
         this.position = new int[2];
     }
 
-    public void HumidificationSol(double crue = 0) //donne le taux d'humidité du sol après la pluie
+    public void HumidificationSol(double crue = 0) //donne le taux d'humidité du sol après la pluie et l'arrosage
     {
         humidite += crue;
     }
 
-    // A mettre dans Simulation
-    // public void Arroser() //si joueur choisit d'arroser
-    // {
-    //     humidite ++;
-    //     //à ajuster en fonction de à quoi correspond arroser, on établit pourcentage qui reste le même à chaque fois
-    // }
 
     public void AdaptationSol() //calcule en fonction du type de terrain l'humidité qu'il reste (ex: si cailloux ou herbe)
     {
