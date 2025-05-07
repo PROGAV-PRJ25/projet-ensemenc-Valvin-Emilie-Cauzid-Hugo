@@ -23,6 +23,8 @@ public abstract class Terrain
         this.retention = retention;
         this.baseTemperature = baseTemperature;
         this.position = new int[2];
+        this.HumidificationSol(0.5); // Pour ne pas démarrer sec
+        this.GererTemperature(); // Pour ne pas démarrer sans températures
     }
 
     public void HumidificationSol(double crue = 0) //donne le taux d'humidité du sol après la pluie et l'arrosage
