@@ -22,12 +22,19 @@ public abstract class Terrain
         this.retention = retention;
     }
 
-    public void HumidificationSol(double crue = 0)
+    public void HumidificationSol(double crue = 0) //donne le taux d'humidité du sol après la pluie
     {
         humidite += crue;
     }
 
-    public void AdaptationSol()
+    // A mettre dans Simulation
+    // public void Arroser() //si joueur choisit d'arroser
+    // {
+    //     humidite ++;
+    //     //à ajuster en fonction de à quoi correspond arroser, on établit pourcentage qui reste le même à chaque fois
+    // }
+
+    public void AdaptationSol() //calcule en fonction du type de terrain l'humidité qu'il reste (ex: si cailloux ou herbe)
     {
         humidite -= (1 - retention) * 0.01;
         // A ajuster selon si utilisation % ou valeurs chiffrées
@@ -81,7 +88,8 @@ public abstract class Terrain
         // A calculer selon la meteo avec des tables
     }
 
-    abstract public void GererTemperature()
+    //abstract ; je sais pas si je dois le mettre parce que ça fait des problèmes avec et sans
+    virtual public void GererTemperature()
     {
         switch (saison)
         {
@@ -89,153 +97,154 @@ public abstract class Terrain
                 switch (meteo)
                 {
                     case Meteo.Normal:
-                        temperature = baseTemperature[1] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
+                        temperature = baseTemperature[0][1] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
                         break;
 
                     case Meteo.Soleil:
-                        temperature = baseTemperature[2] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
+                        temperature = baseTemperature[0][2] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
                         break;
 
                     case Meteo.Canicule:
-                        temperature = baseTemperature[3] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
+                        temperature = baseTemperature[0][3] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
                         break;
 
                     case Meteo.Nuageux:
-                        temperature = baseTemperature[4] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
+                        temperature = baseTemperature[0][4] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
                         break;
 
                     case Meteo.Pluie:
-                        temperature = baseTemperature[5] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
+                        temperature = baseTemperature[0][5] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
                         break;
 
                     case Meteo.Orage:
-                        temperature = baseTemperature[6] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
+                        temperature = baseTemperature[0][6] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
                         break;
 
                     case Meteo.Neige:
-                        temperature = baseTemperature[7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 2);
+                        temperature = baseTemperature[0][7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 2);
                         break;
 
                     default:
-                        temperature = baseTemperature[0];
+                        temperature = baseTemperature[0][0];
                         break;
                 }
+                break;
             case Saison.Ete:
                 switch (meteo)
                 {
                     case Meteo.Normal:
-                        temperature = baseTemperature[1] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
+                        temperature = baseTemperature[1][1] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
                         break;
 
                     case Meteo.Soleil:
-                        temperature = baseTemperature[2] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
+                        temperature = baseTemperature[1][2] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
                         break;
 
                     case Meteo.Canicule:
-                        temperature = baseTemperature[3] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
+                        temperature = baseTemperature[1][3] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
                         break;
 
                     case Meteo.Nuageux:
-                        temperature = baseTemperature[4] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
+                        temperature = baseTemperature[1][4] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
                         break;
 
                     case Meteo.Pluie:
-                        temperature = baseTemperature[5] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 25);
+                        temperature = baseTemperature[1][5] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 25);
                         break;
 
                     case Meteo.Orage:
-                        temperature = baseTemperature[6] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
+                        temperature = baseTemperature[1][6] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
                         break;
 
                     case Meteo.Neige:
-                        temperature = baseTemperature[7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 1);
-                        // Même valeur que Pluie
+                        temperature = baseTemperature[1][7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 1);
                         break;
 
                     default:
-                        temperature = baseTemperature[0];
+                        temperature = baseTemperature[1][0];
                         break;
                 }
+                break;
             case Saison.Automne:
                 switch (meteo)
                 {
                     case Meteo.Normal:
-                        temperature = baseTemperature[1] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
+                        temperature = baseTemperature[2][1] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
                         break;
 
                     case Meteo.Soleil:
-                        temperature = baseTemperature[2] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
+                        temperature = baseTemperature[2][2] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
                         break;
 
                     case Meteo.Canicule:
-                        temperature = baseTemperature[3] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
+                        temperature = baseTemperature[2][3] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 5);
                         break;
 
                     case Meteo.Nuageux:
-                        temperature = baseTemperature[4] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
+                        temperature = baseTemperature[2][4] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
                         break;
 
                     case Meteo.Pluie:
-                        temperature = baseTemperature[5] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
+                        temperature = baseTemperature[2][5] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
                         break;
 
                     case Meteo.Orage:
-                        temperature = baseTemperature[6] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
+                        temperature = baseTemperature[2][6] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
                         break;
 
                     case Meteo.Neige:
-                        temperature = baseTemperature[7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 1);
-                        // Même valeur que Pluie
+                        temperature = baseTemperature[2][7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 1);
                         break;
 
                     default:
-                        temperature = baseTemperature[0];
+                        temperature = baseTemperature[2][0];
                         break;
                 }
+                break;
             case Saison.Hiver:
                 switch (meteo)
                 {
                     case Meteo.Normal:
-                        temperature = baseTemperature[1] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
+                        temperature = baseTemperature[3][1] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
                         break;
 
                     case Meteo.Soleil:
-                        temperature = baseTemperature[2] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
+                        temperature = baseTemperature[3][2] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
                         break;
 
                     case Meteo.Canicule:
-                        temperature = baseTemperature[3] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 1);
+                        temperature = baseTemperature[3][3] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 1);
                         break;
 
                     case Meteo.Nuageux:
-                        temperature = baseTemperature[4] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
+                        temperature = baseTemperature[3][4] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
                         break;
 
                     case Meteo.Pluie:
-                        temperature = baseTemperature[5] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
+                        temperature = baseTemperature[3][5] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
                         break;
 
                     case Meteo.Orage:
-                        temperature = baseTemperature[6] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
+                        temperature = baseTemperature[3][6] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 10);
                         break;
 
                     case Meteo.Neige:
-                        temperature = baseTemperature[7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
-                        // Même valeur que Pluie
+                        temperature = baseTemperature[3][7] + Math.Pow(-1, rng.Next(0, 1)) * 0.1 * rng.Next(0, 20);
                         break;
 
                     default:
-                        temperature = baseTemperature[0];
+                        temperature = baseTemperature[3][0];
                         break;
                 }
+                break;
             default:
-                temperature = baseTemperature[0];
+                temperature = baseTemperature[0][0];
                 break;
         }
     
         
     }
-    // A calculer selon la meteo, la saison et les bornes de temp avec des tables
+    // A calculer selon la meteo, la saison et les bornes de temps avec des tables
     // Même température pour tous les terrains de même type --> abstract ici et redéfinition dans classes héritées ?
 
 }
