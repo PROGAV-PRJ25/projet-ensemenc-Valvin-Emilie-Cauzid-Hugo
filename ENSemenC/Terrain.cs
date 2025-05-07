@@ -7,7 +7,7 @@ public abstract class Terrain
     //Printemps = 1, Ete = 2, Automne = 3, Hiver = 4
     // Normal = 1, Soleil, Canicule, Nuageux, Pluie, Orage, Neige 
     public static double temperature { get; set; }
-    public int[] position { get; set; }
+    public int[]? position { get; set; }
     public double humidite { get; set; }
     public double retention { get; }
     private static double[] baseLuminosite = { 0.7, 0.75, 0.90, 1, 0.5, 0.35, 0.2 };
