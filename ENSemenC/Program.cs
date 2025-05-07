@@ -41,11 +41,36 @@ Debug.Assert(terr4.humidite == baseHumidite - (1 - terr4.retention) * 0.01);
 // Variations de l'humidité très petites 0.5 --> 0.495/0.491/0.494/0.4975
 // Peut-être mettre 0.1 au lieu de 0.01 dans méthode
 
+// for (int i = 0; i < 20; i++)
+// {
+//     terr1.GererLumiere();
+//     Console.WriteLine(Terrain.luminosite);
+//     Debug.Assert(Terrain.luminosite < 0.75 + 0.1 && Terrain.luminosite > 0.75 - 0.1);
+// }
+
 for (int i = 0; i < 20; i++)
 {
-    terr1.GererLumiere();
-    Console.WriteLine(Terrain.luminosite);
-    Debug.Assert(Terrain.luminosite < 0.75 + 0.1 && Terrain.luminosite > 0.75 - 0.1);
+    terr1.GererTemperature();
+    Console.WriteLine(terr1.temperature);
+    Debug.Assert(terr1.temperature < 18.0 + 0.1 && terr1.temperature > 18.0 - 0.1);
+}
+for (int i = 0; i < 20; i++)
+{
+    terr2.GererTemperature();
+    Console.WriteLine(terr2.temperature);
+    Debug.Assert(terr2.temperature < 18.0 + 0.1 && terr2.temperature > 18.0 - 0.1);
+}
+for (int i = 0; i < 20; i++)
+{
+    terr3.GererTemperature();
+    Console.WriteLine(terr3.temperature);
+    Debug.Assert(terr3.temperature < 22.0 + 0.1 && terr3.temperature > 22.0 - 0.1);
+}
+for (int i = 0; i < 20; i++)
+{
+    terr4.GererTemperature();
+    Console.WriteLine(terr4.temperature);
+    Debug.Assert(terr4.temperature < 19.0 + 0.1 && terr4.temperature > 19.0 - 0.1);
 }
 
 
