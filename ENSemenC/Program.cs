@@ -1,6 +1,53 @@
 ﻿// Créer des terrains et des plantes pour tester (penser à la météo et la saison associées)
+using System.Diagnostics;
 
-// Vérifier que la MAJ de la luminosité et de l'humidité marchent bien
+Meteo meteo = Meteo.Normal;
+Saison saison = Saison.Printemps;
+
+Terrain.meteo = meteo;
+Terrain.saison = saison;
+
+Terrain terr1 = new Herbeux();
+Terrain terr2 = new Rocheux();
+Terrain terr3 = new Dune();
+Terrain terr4 = new Jungle();
+
+// Vérifier que la MAJ de la luminosité, la température et de l'humidité marchent bien
+/*
+
+double baseHumidite = 0.5;
+terr1.HumidificationSol(baseHumidite);
+terr1.AdaptationSol();
+Console.WriteLine(terr1.humidite);
+Debug.Assert(terr1.humidite == baseHumidite - (1 - terr1.retention) * 0.01);
+
+terr2.HumidificationSol(baseHumidite);
+terr2.AdaptationSol();
+Console.WriteLine(terr2.humidite);
+Debug.Assert(terr2.humidite == baseHumidite - (1 - terr2.retention) * 0.01);
+
+terr3.HumidificationSol(baseHumidite);
+terr3.AdaptationSol();
+Console.WriteLine(terr3.humidite);
+Debug.Assert(terr3.humidite == baseHumidite - (1 - terr3.retention) * 0.01);
+
+terr4.HumidificationSol(baseHumidite);
+terr4.AdaptationSol();
+Console.WriteLine(terr4.humidite);
+Debug.Assert(terr4.humidite == baseHumidite - (1 - terr4.retention) * 0.01);
+
+*/
+
+// Variations de l'humidité très petites 0.5 --> 0.495/0.491/0.494/0.4975
+// Peut-être mettre 0.1 au lieu de 0.01 dans méthode
+
+for (int i = 0; i < 20; i++)
+{
+    terr1.GererLumiere();
+    Console.WriteLine(Terrain.luminosite);
+    Debug.Assert(Terrain.luminosite < 0.75 + 0.1 && Terrain.luminosite > 0.75 - 0.1);
+}
+
 
 // Créer des plantes
 
