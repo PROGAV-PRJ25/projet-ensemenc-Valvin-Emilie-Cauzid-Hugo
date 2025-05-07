@@ -26,17 +26,11 @@ public abstract class Terrain
         this.position = new int[2];
     }
 
-    public void HumidificationSol(double crue = 0) //donne le taux d'humidité du sol après la pluie
+    public void HumidificationSol(double crue = 0) //donne le taux d'humidité du sol après la pluie et l'arrosage
     {
         humidite += crue;
     }
 
-    // A mettre dans Simulation
-    // public void Arroser() //si joueur choisit d'arroser
-    // {
-    //     humidite ++;
-    //     //à ajuster en fonction de à quoi correspond arroser, on établit pourcentage qui reste le même à chaque fois
-    // }
 
     public void AdaptationSol() //calcule en fonction du type de terrain l'humidité qu'il reste (ex: si cailloux ou herbe)
     {
