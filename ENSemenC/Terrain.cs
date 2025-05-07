@@ -23,6 +23,7 @@ public abstract class Terrain
         this.typeTerrain = typeTerrain;
         this.retention = retention;
         this.baseTemperature = baseTemperature;
+        this.position = new int[2];
     }
 
     public void HumidificationSol(double crue = 0) //donne le taux d'humidité du sol après la pluie
