@@ -110,5 +110,7 @@ public abstract class Plante
         return $"La {nom} est une plante de nature {nature}, sa saison préférée est {saisonPreferee}, ";
     }
 
-
+    public abstract void AfficherPlateau();
+    public abstract string AfficherPlateau2();
+    public abstract void GetCouleur();
 }
