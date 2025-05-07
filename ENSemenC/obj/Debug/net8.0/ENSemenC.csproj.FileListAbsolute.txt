@@ -21,3 +21,10 @@ H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net
 H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.dll
 H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\refint\ENSemenC.dll
 H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.pdb
+H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.exe
+H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.deps.json
+H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.runtimeconfig.json
+H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.dll
+H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.pdb
+H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.genruntimeconfig.cache
+H:\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ref\ENSemenC.dll

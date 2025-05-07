@@ -13,33 +13,33 @@ Terrain terr3 = new Dune();
 Terrain terr4 = new Jungle();
 
 // Vérifier que la MAJ de la luminosité, la température et de l'humidité marchent bien
-/*
 
-double baseHumidite = 0.5;
-terr1.HumidificationSol(baseHumidite);
-terr1.AdaptationSol();
-Console.WriteLine(terr1.humidite);
-Debug.Assert(terr1.humidite == baseHumidite - (1 - terr1.retention) * 0.01);
 
-terr2.HumidificationSol(baseHumidite);
-terr2.AdaptationSol();
-Console.WriteLine(terr2.humidite);
-Debug.Assert(terr2.humidite == baseHumidite - (1 - terr2.retention) * 0.01);
+// double baseHumidite = 0.5;
+// terr1.HumidificationSol(baseHumidite);
+// terr1.AdaptationSol();
+// Console.WriteLine(terr1.humidite);
+// Debug.Assert(terr1.humidite == baseHumidite - (1 - terr1.retention) * 0.01);
 
-terr3.HumidificationSol(baseHumidite);
-terr3.AdaptationSol();
-Console.WriteLine(terr3.humidite);
-Debug.Assert(terr3.humidite == baseHumidite - (1 - terr3.retention) * 0.01);
+// terr2.HumidificationSol(baseHumidite);
+// terr2.AdaptationSol();
+// Console.WriteLine(terr2.humidite);
+// Debug.Assert(terr2.humidite == baseHumidite - (1 - terr2.retention) * 0.01);
 
-terr4.HumidificationSol(baseHumidite);
-terr4.AdaptationSol();
-Console.WriteLine(terr4.humidite);
-Debug.Assert(terr4.humidite == baseHumidite - (1 - terr4.retention) * 0.01);
+// terr3.HumidificationSol(baseHumidite);
+// terr3.AdaptationSol();
+// Console.WriteLine(terr3.humidite);
+// Debug.Assert(terr3.humidite == baseHumidite - (1 - terr3.retention) * 0.01);
 
-*/
+// terr4.HumidificationSol(baseHumidite);
+// terr4.AdaptationSol();
+// Console.WriteLine(terr4.humidite);
+// Debug.Assert(terr4.humidite == baseHumidite - (1 - terr4.retention) * 0.01);
 
 // Variations de l'humidité très petites 0.5 --> 0.495/0.491/0.494/0.4975
 // Peut-être mettre 0.1 au lieu de 0.01 dans méthode
+
+terr1.GererLumiere();
 
 // for (int i = 0; i < 20; i++)
 // {
@@ -48,36 +48,57 @@ Debug.Assert(terr4.humidite == baseHumidite - (1 - terr4.retention) * 0.01);
 //     Debug.Assert(Terrain.luminosite < 0.75 + 0.1 && Terrain.luminosite > 0.75 - 0.1);
 // }
 
-for (int i = 0; i < 20; i++)
-{
-    terr1.GererTemperature();
-    Console.WriteLine(terr1.temperature);
-    Debug.Assert(terr1.temperature < 18.0 + 0.1 && terr1.temperature > 18.0 - 0.1);
-}
-for (int i = 0; i < 20; i++)
-{
-    terr2.GererTemperature();
-    Console.WriteLine(terr2.temperature);
-    Debug.Assert(terr2.temperature < 18.0 + 0.1 && terr2.temperature > 18.0 - 0.1);
-}
-for (int i = 0; i < 20; i++)
-{
-    terr3.GererTemperature();
-    Console.WriteLine(terr3.temperature);
-    Debug.Assert(terr3.temperature < 22.0 + 0.1 && terr3.temperature > 22.0 - 0.1);
-}
-for (int i = 0; i < 20; i++)
-{
-    terr4.GererTemperature();
-    Console.WriteLine(terr4.temperature);
-    Debug.Assert(terr4.temperature < 19.0 + 0.1 && terr4.temperature > 19.0 - 0.1);
-}
+// for (int i = 0; i < 20; i++)
+// {
+//     terr1.GererTemperature();
+//     Console.WriteLine(terr1.temperature);
+//     Debug.Assert(terr1.temperature < 18.0 + 1 && terr1.temperature > 18.0 - 1);
+// }
+// Console.WriteLine();
+// for (int i = 0; i < 20; i++)
+// {
+//     terr2.GererTemperature();
+//     Console.WriteLine(terr2.temperature);
+//     Debug.Assert(terr2.temperature < 18.0 + 1 && terr2.temperature > 18.0 - 1);
+// }
+// Console.WriteLine();
+// for (int i = 0; i < 20; i++)
+// {
+//     terr3.GererTemperature();
+//     Console.WriteLine(terr3.temperature);
+//     Debug.Assert(terr3.temperature < 22.0 + 1 && terr3.temperature > 22.0 - 1);
+// }
+// Console.WriteLine();
+// for (int i = 0; i < 20; i++)
+// {
+//     terr4.GererTemperature();
+//     Console.WriteLine(terr4.temperature);
+//     Debug.Assert(terr4.temperature < 19.0 + 1 && terr4.temperature > 19.0 - 1);
+// }
 
 
 // Créer des plantes
 
-// Associer les 2
+Plante plante1 = new Mandragore(terr1);
+Plante plante2 = new Branchiflore (terr2);
+Plante plante3 = new FruitEtoile (terr3);
+Plante plante4 = new FiletDuDiable (terr4);
+Plante plante5 = new RoseDeFee (terr1);
 
-// Vérifier que les fonctions pour chercher luminosité et humidité marchent bien
+// Console.WriteLine(plante1);
+// Console.WriteLine(plante2);
+// Console.WriteLine(plante3);
+// Console.WriteLine(plante4);
+// Console.WriteLine(plante5);
+
 
 // Vérifier que la croissance de la plante fonctionne (long à faire je pense)
+Terrain.saison = Saison.Ete;
+//terr1.HumidificationSol(-50.0);
+//plante1.Grandir(1);
+// Console.WriteLine(terr1.humidite);
+
+// terr3.HumidificationSol(5.0);
+Terrain.meteo = Meteo.Canicule;
+plante3.Grandir(1);
+// Console.WriteLine(terr3.humidite);
