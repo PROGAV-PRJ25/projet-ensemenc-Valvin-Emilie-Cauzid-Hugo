@@ -79,11 +79,11 @@ terr1.GererLumiere();
 
 // Créer des plantes
 
-Plante plante1 = new Mandragore(terr1);
-Plante plante2 = new Branchiflore (terr2);
-Plante plante3 = new FruitEtoile (terr3);
-Plante plante4 = new FiletDuDiable (terr4);
-Plante plante5 = new RoseDeFee (terr1);
+Plante plante1 = new Mandragore(terr1); //ok
+Plante plante2 = new Branchiflore (terr2); //ok
+Plante plante3 = new FruitEtoile (terr3); //ok
+Plante plante4 = new FiletDuDiable (terr4); //ok
+Plante plante5 = new RoseDeFee (terr1); //ok
 
 // Console.WriteLine(plante1);
 // Console.WriteLine(plante2);
@@ -93,12 +93,29 @@ Plante plante5 = new RoseDeFee (terr1);
 
 
 // Vérifier que la croissance de la plante fonctionne (long à faire je pense)
-Terrain.saison = Saison.Ete;
+//Terrain.saison = Saison.Ete;
 //terr1.HumidificationSol(-50.0);
 //plante1.Grandir(1);
 // Console.WriteLine(terr1.humidite);
 
-// terr3.HumidificationSol(5.0);
-Terrain.meteo = Meteo.Canicule;
-plante3.Grandir(1);
+// terr3.GererLumiere();
+// Terrain.saison = Saison.Automne;
+// terr3.HumidificationSol(0.05);
+// Terrain.meteo = Meteo.Soleil;
+// plante3.Grandir(1);
+// Console.WriteLine(Terrain.luminosite);
 // Console.WriteLine(terr3.humidite);
+
+// Terrain.saison = Saison.Ete;
+// Terrain.meteo = Meteo.Orage;
+// terr4.GererLumiere();
+// terr4.HumidificationSol(0.25);
+// plante4.Grandir(1);
+// Console.WriteLine(Terrain.luminosite);
+// Console.WriteLine(terr1.humidite);
+
+Terrain.saison = Saison.Ete;
+Terrain.meteo = Meteo.Soleil;
+terr1.GererLumiere();
+terr1.HumidificationSol(0.1);
+plante5.Grandir(0);

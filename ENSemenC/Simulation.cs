@@ -1,3 +1,8 @@
+//à faire : 
+//tester si plateau marche, le rendre joli avec curseur -> Hugo
+//partie de droite avec les infos sur les plantes et tout, trouver icones qui correspondent aux infos, une autre fonction qu'afficher plateau -> Emilie
+//faire actions que peut faire joueur, à quoi il a accès
+
 public class Simulation
 {
     public List<Plante> plantes { get; set; }
