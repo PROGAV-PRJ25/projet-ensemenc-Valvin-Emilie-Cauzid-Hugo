@@ -23,3 +23,26 @@ public class FruitEtoile : PlanteComestible
         // Console.ResetColor();
     }
 }
+
+//Console.WriteLine("Nature : Plante comestible");
+//Console.WriteLine("Saison préférée : Hiver");
+//Console.WriteLine("Stade d'évolution :"); //ça je ne sais pas encore
+//Console.WriteLine("Age :"); //on fait +1 chaque jour à chaque simulation
+//Console.WriteLine("Prix : "); //on le définit avant ?
+
+// Console.WriteLine("   	  ⢶⣶⣿⣶⣶⣄⠀⠀⠀⠀⠀");
+// Console.WriteLine("        ⠘⣿⣿⣿⣿⣿⣷⠀⠀");
+// Console.WriteLine(" 	        ⠈⠻⢿⣿⣿⣿⣧⡀⠀");
+// Console.WriteLine(" 	             ⠈⠻⣼⡇⠀⠀⠀");
+// Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⣦⢧⡣⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+// Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⣘⣾⡍⠋⠐⢾⣟⣦⠅⡂⠀⠀⠀⠀⠀");
+// Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⣀⠠⣀⣂⣒⡿⡝⠁⠀⠀⠀⢩⢻⣝⣤⣃⢦⡐⣠⢀⡀⡀⢀⠀⠀⠀⠀⠀");
+// Console.WriteLine(" ⠀⠄⢂⢥⣞⣵⣾⣳⣯⢷⠷⠷⠈⠀⢀⡀⠀⠀⠙⠦⠻⠯⢷⡿⠧⠍⠈⢷⣣⠌⠀⠀⠀");
+// Console.WriteLine(" ⠈⠔⢫⡊⣼⡟⠊⡑⠀⠂⠈⠀⠀⢀⠾⣟⡄⠀⠀⠀⠀⠀⠀⠀⣁⠔⠁⣺⠱⠈⠀⠀⠀");
+// Console.WriteLine("  ⠈⠄⠙⠹⣟⣦⡀⠀⠀⠐⠶⠼⣵⠂⠘⠒⠿⡟⠃⠀⠀⣠⣾⣟⡟⢎⠁⠂⠀");
+// Console.WriteLine(" ⠀⠀⠀⠈⠐⢈⠛⠿⣳⡄⠀⠀⠀⠐⠀⠀⣰⠒⠀⠀⢀⡾⢋⠃⡜⠌⠀⠀⠀⠀⠀");
+// Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⡐⢰⣟⠋⠀⠀⠸⠆⠄⠀⠈⠿⠄⠀⠀⡅⠀⣠⠜⠀⠀⠀⠀⠀⠀");
+// Console.WriteLine(" ⠀⠀⠀⠀⠀⢀⢀⣻⡝⠀⠀⠀⠀⠀⣀⣀⢄⠀⠀⠀⠀⠀⠘⣌⢒⠀⠀⠀");
+// Console.WriteLine(" ⠀⠀ ⠀⠀⠀⠀⢯⢿⣠⣀⣤⣶⢿⡻⢟⢿⡻⣦⣤⣀⠐⠈⣜⡣⠀⠀⠀⠀⠀⠀⠀⠀");
+// Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⢄⡻⠞⢾⡻⡝⢎⠊⡑⠈⠂⡑⠑⢎⠻⣃⣐⣦⡛⠄⠀⠀⠀⠀⠀⠀");
+// Console.WriteLine(" ⠀⠀⠀⠀⠀⠈⠤⠙⡩⢃⠡⠐⠀⠀⠀⠀⠀⠀⠀⠀⠂⠡⠘⠠⠑⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
