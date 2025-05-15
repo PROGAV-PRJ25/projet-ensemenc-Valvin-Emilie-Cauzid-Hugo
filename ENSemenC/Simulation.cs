@@ -161,4 +161,51 @@ public class Simulation
             Console.WriteLine($" ] {i + 1}");
         }
     }
+    public void AfficherInventaire()
+    {
+        //afficher la date
+        DateTime thisDay = DateTime.Today;
+        Console.WriteLine(thisDay.ToString("D"));
+        //parcourir liste pour compter combien de chaque
+        int nombreBranchiflore = 0;
+        int nombreFiletDuDiable = 0;
+        int nombreFruitEtoile = 0;
+        int nombreMandragore = 0;
+        int nombreRoseDeFee = 0;
+        for (int i = 0; i < plantes.Count; i++) {
+            if (plantes[i]=="Branchiflore") {
+                nombreBranchiflore++;
+            }
+            else if (plantes[i]=="FiletDuDiable") {
+                nombreFiletDuDiable++;
+            }
+            else if (plantes[i]=="FruitEtoile") {
+                nombreFruitEtoile++;
+            }
+            else if (plantes[i]=="Mandragore") {
+                nombreMandragore++;
+            }
+            else if (plantes[i]=="RoseDeFee") {
+                nombreRoseDeFee++;
+            }
+        }
+        Console.WriteLine("Inventaire :");
+        if (nombreBranchiflore>0) {
+            Console.Write($"{nombreBranchiflore} 🌿");
+        }
+        else if (nombreFiletDuDiable>0) {
+            Console.Write($"{nombreFiletDuDiable} 👿");
+        }
+        else if (nombreFruitEtoile>0) {
+            Console.Write($"{nombreFruitEtoile} ⭐");
+        }
+        else if (nombreMandragore>0) {
+            Console.Write($"{nombreMandragore} 🌱");
+        }
+        else if (nombreRoseDeFee>0) {
+            Console.Write($"{nombreRoseDeFee} 🌷");
+        }
+    }
+    
+
 }

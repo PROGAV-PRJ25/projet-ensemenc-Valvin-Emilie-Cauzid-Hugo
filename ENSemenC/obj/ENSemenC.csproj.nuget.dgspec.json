@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj": {}
+    "H:\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj": {}
   },
   "projects": {
-    "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj": {
+    "H:\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj",
+        "projectUniqueName": "H:\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj",
         "projectName": "ENSemenC",
-        "projectPath": "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj",
-        "packagesPath": "C:\\Users\\emili\\.nuget\\packages\\",
-        "outputPath": "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\obj\\",
+        "projectPath": "H:\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj",
+        "packagesPath": "C:\\Users\\evalvin\\.nuget\\packages\\",
+        "outputPath": "H:\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\emili\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\evalvin\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
