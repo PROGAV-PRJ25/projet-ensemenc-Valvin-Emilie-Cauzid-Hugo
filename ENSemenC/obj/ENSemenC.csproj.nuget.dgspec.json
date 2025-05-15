@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\emili\\OneDrive\\Documents\\Devoirs\\ENSC\\1A\\C#\\PROJET\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj": {}
+    "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\emili\\OneDrive\\Documents\\Devoirs\\ENSC\\1A\\C#\\PROJET\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj": {
+    "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\emili\\OneDrive\\Documents\\Devoirs\\ENSC\\1A\\C#\\PROJET\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj",
+        "projectUniqueName": "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj",
         "projectName": "ENSemenC",
-        "projectPath": "C:\\Users\\emili\\OneDrive\\Documents\\Devoirs\\ENSC\\1A\\C#\\PROJET\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj",
+        "projectPath": "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\ENSemenC.csproj",
         "packagesPath": "C:\\Users\\emili\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\emili\\OneDrive\\Documents\\Devoirs\\ENSC\\1A\\C#\\PROJET\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\obj\\",
+        "outputPath": "E:\\ENSC\\C#\\S6\\Projet\\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\\ENSemenC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\emili\\AppData\\Roaming\\NuGet\\NuGet.Config"
