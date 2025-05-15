@@ -161,7 +161,7 @@ public class Simulation
             Console.WriteLine($" ] {i + 1}");
         }
     }
-    public void AfficherInventaire()
+    /*public void AfficherInventaire()
     {
         //afficher la date
         DateTime thisDay = DateTime.Today;
@@ -176,16 +176,16 @@ public class Simulation
             if (plantes[i]=="Branchiflore") {
                 nombreBranchiflore++;
             }
-            else if (plantes[i]=="FiletDuDiable") {
+            else if (plantes[i]="FiletDuDiable") {
                 nombreFiletDuDiable++;
             }
-            else if (plantes[i]=="FruitEtoile") {
+            else if (plantes[i]="FruitEtoile") {
                 nombreFruitEtoile++;
             }
-            else if (plantes[i]=="Mandragore") {
+            else if (plantes[i]="Mandragore") {
                 nombreMandragore++;
             }
-            else if (plantes[i]=="RoseDeFee") {
+            else if (plantes[i]="RoseDeFee") {
                 nombreRoseDeFee++;
             }
         }
@@ -205,7 +205,7 @@ public class Simulation
         else if (nombreRoseDeFee>0) {
             Console.Write($"{nombreRoseDeFee} 🌷");
         }
-    }
+    }*/
     
 
 }
