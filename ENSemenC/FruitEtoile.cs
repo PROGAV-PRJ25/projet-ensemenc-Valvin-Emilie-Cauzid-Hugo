@@ -6,7 +6,7 @@ public class FruitEtoile : PlanteComestible
     public override void AfficherPlateau()
     {
         Console.ForegroundColor = ConsoleColor.DarkMagenta;
-        Console.Write($"F");
+        Console.Write($" F ");
         Console.ResetColor();
     }
 
@@ -17,7 +17,7 @@ public class FruitEtoile : PlanteComestible
 
     public override string AfficherPlateau2()
     {
-        return "F";
+        return " F ";
         // Console.ForegroundColor = ConsoleColor.DarkMagenta;
         // Console.Write($"F");
         // Console.ResetColor();

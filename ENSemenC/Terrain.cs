@@ -246,4 +246,5 @@ public abstract class Terrain
     // A calculer selon la meteo, la saison et les bornes de temps avec des tables
     // Même température pour tous les terrains de même type --> abstract ici et redéfinition dans classes héritées ?
 
+    abstract public void GetCouleur();
 }

@@ -12,15 +12,17 @@ public class Simulation
     // Cette liste possède une colonne et une ligne vide de plus pour permettre au joueur d'étendre son terrain
     // Mettre à jour plateau après (méthode à coder)
     public List<List<string>> plateauAffiche { get; set; }
+    public int[] positionJoueur { get; set; }
 
     public Simulation()
     {
         plantes = new List<Plante> { };
         // Initialisation en temps que terrain de taille 1x1 vide
-        plateau = new List<List<Terrain?>> { };
+        plateau = new List<List<Terrain?>> { new List<Terrain?> { null, null }, new List<Terrain?> { null, null } };
         // Initialisation en temps que terrain de taille 2x2 vide
-        nouveauPlateau = new List<List<Terrain?>> { new List<Terrain?> { null } };
+        nouveauPlateau = new List<List<Terrain?>> { new List<Terrain?> { null, null, null }, new List<Terrain?> { null, null, null }, new List<Terrain?> { null, null, null } };
         plateauAffiche = new List<List<string>> { new List<string> { } };
+        positionJoueur = new int[2] { 0, 0 };
     }
 
     public void AgrandirPlateau(bool ajoutLigne) // ajouter "=true" ? 
@@ -58,7 +60,7 @@ public class Simulation
     // Pour plateau si ligne faire boucle selon nb de valeurs + test pour savoir bonne colonne 
     // si colonne boucle sur toutes les lignes + test pour savoir quelle colonne rajouter valeur
 
-    public void AjouterPlante(int[] position, Plante plante)
+    public void AjouterTerrain(int[] position, Terrain terrain)
     {
         if (position[0] > plateau[0].Count())
         {
@@ -68,12 +70,18 @@ public class Simulation
         {
             AgrandirPlateau(true);
         }
+        plateau[position[1]][position[0]] = terrain;
+        nouveauPlateau[position[1]][position[0]] = terrain;
+    }
+
+    public void AjouterPlante(int[] position, Plante plante)
+    {
         plateau[position[1]][position[0]]!.plante = plante;
         plante.terrain = plateau[position[1]][position[0]]!;
         // Vérifier que ce n'est pas null !!!
     }
 
-    public void AfficherPlateau()
+    public void AfficherPlateau(bool nvPlateau = false)
     {
         /*
         // plateau[i][j];
@@ -89,7 +97,11 @@ public class Simulation
         // --> trouver comment trouver l'emplacement sur l'affichage (grâce à une liste de liste dédiée à l'affichage ?)
         // --> semble être la meilleure solution pour le moment */
         Console.Clear();
-
+        List<List<Terrain?>> plato;
+        if (nvPlateau)
+        { plato = nouveauPlateau; }
+        else
+        { plato = plateau; }
         /*
         // Création d'une liste de listes contenant " "
         List<string> ligne = new List<string> { };
@@ -111,39 +123,51 @@ public class Simulation
             positionPlante = plante.terrain.position;
             plateauAffiche[positionPlante[0]][positionPlante[1]] = plante.AfficherPlateau2();
         } */
-
-        int largeur = plateau.Count;
-        int longueur = plateau[0].Count;
+        bool coulFond = true;
+        int largeur = plato.Count;
+        int longueur = plato[0].Count;
         Console.Write("\t ");
         for (int i = 0; i < longueur; i++)
         // Affichage du numéro des colonnes
         {
-            Console.Write($" {i + 1}  ");
+            Console.Write($"  {i + 1}   ");
         }
 
         Console.WriteLine();
         for (int i = 0; i < largeur; i++)
         {
-            Console.Write(" \t[ ");
+            Console.Write(" \t[");
             for (int j = 0; j < longueur; j++)
             {
-                // On passe ensuite dans tout le plateau en affichant les lettres si la case possède un terrain et s'il possède une plante
-                if (plateau[i][j] != null)
+                coulFond = true;
+                if (positionJoueur[0] == j && positionJoueur[1] == i)
                 {
-                    if (plateau[i][j]!.plante != null)
+                    coulFond = false;
+                    Console.BackgroundColor = ConsoleColor.White;
+                }
+                Console.Write(" ");
+                // On passe ensuite dans tout le plateau en affichant les lettres si la case possède un terrain et s'il possède une plante
+                if (plato[i][j] != null)
+                {
+                    if (coulFond)
                     {
-                        plateau[i][j]!.plante!.AfficherPlateau();
+                        plato[i][j]!.GetCouleur();
+                    }
+                    if (plato[i][j]!.plante != null)
+                    {
+                        plato[i][j]!.plante!.AfficherPlateau();
                         // le ! sert à affirmer que la valeur ne peux pas être null
                     }
                     else
                     {
-                        Console.Write(" ");
+                        Console.Write("   ");
+                        Console.ResetColor();
                     }
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.Write("X");
+                    Console.Write(" X ");
                     Console.ResetColor();
                 }
                 /*// écriture de la valeur en i,j
@@ -153,12 +177,76 @@ public class Simulation
                 // séparateur
                 if (j != longueur - 1)
                 {
-                    Console.Write($" | ");
+                    if (!coulFond)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.Write($" ");
+                    Console.ResetColor();
+                    Console.Write($"|");
                 }
             }
 
             // Affichage du numéro de la ligne
+
+            if (!coulFond)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+            }
+            Console.Write($" ");
+            Console.ResetColor();
             Console.WriteLine($" ] {i + 1}");
         }
+    }
+
+    public void DeplacementPlateau(Orientation orientation)
+    {
+        switch (orientation)
+        {
+            case Orientation.Nord:
+                positionJoueur[1]--;
+                if (positionJoueur[1] < 0)
+                {
+                    positionJoueur[1] = plateau.Count() - 1;
+                }
+                break;
+            case Orientation.Est:
+                positionJoueur[0]++;
+                if (positionJoueur[0] >= plateau[0].Count())
+                {
+                    positionJoueur[0] = 0;
+                }
+                break;
+            case Orientation.Ouest:
+                positionJoueur[0]--;
+                if (positionJoueur[0] < 0)
+                {
+                    positionJoueur[0] = plateau[0].Count() - 1;
+                }
+                break;
+            case Orientation.Sud:
+                positionJoueur[1]++;
+                if (positionJoueur[1] >= plateau.Count())
+                {
+                    positionJoueur[1] = 0;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public int BoucleChoixAction()
+    {
+        int action = 0;
+        // Actions possibles 
+        // Arroser 
+        // Retirer Plante 
+        // Ajouter un Terrain 
+        // Récupérer le fruit 
+        // Vendre 
+        // Annuler 
+        // Quitter le jeu
+        return action;
     }
 }

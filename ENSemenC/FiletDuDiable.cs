@@ -6,7 +6,7 @@ public class FiletDuDiable : PlanteInvasive
     public override void AfficherPlateau()
     {
         Console.ForegroundColor = ConsoleColor.DarkGreen;
-        Console.Write($"F");
+        Console.Write($" F ");
         Console.ResetColor();
     }
 
@@ -17,7 +17,7 @@ public class FiletDuDiable : PlanteInvasive
 
     public override string AfficherPlateau2()
     {
-        return "F";
+        return " F ";
         // Console.ForegroundColor = ConsoleColor.DarkGreen;
         // Console.Write($"F");
         // Console.ResetColor();

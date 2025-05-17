@@ -12,6 +12,8 @@ Terrain terr2 = new Rocheux();
 Terrain terr3 = new Dune();
 Terrain terr4 = new Jungle();
 
+/*
+
 // Vérifier que la MAJ de la luminosité, la température et de l'humidité marchent bien
 
 
@@ -78,13 +80,14 @@ terr1.GererLumiere();
 
 
 // Créer des plantes
-
+*/
 Plante plante1 = new Mandragore(terr1); //ok
-Plante plante2 = new Branchiflore (terr2); //ok
-Plante plante3 = new FruitEtoile (terr3); //ok
-Plante plante4 = new FiletDuDiable (terr4); //ok
-Plante plante5 = new RoseDeFee (terr1); //ok
+Plante plante2 = new Branchiflore(terr2); //ok
+Plante plante3 = new FruitEtoile(terr3); //ok
+Plante plante4 = new FiletDuDiable(terr4); //ok
+Plante plante5 = new RoseDeFee(terr1); //ok
 
+/*
 // Console.WriteLine(plante1);
 // Console.WriteLine(plante2);
 // Console.WriteLine(plante3);
@@ -113,9 +116,35 @@ Plante plante5 = new RoseDeFee (terr1); //ok
 // plante4.Grandir(1);
 // Console.WriteLine(Terrain.luminosite);
 // Console.WriteLine(terr1.humidite);
+*/
 
+/*
 Terrain.saison = Saison.Ete;
 Terrain.meteo = Meteo.Soleil;
 terr1.GererLumiere();
 terr1.HumidificationSol(0.1);
 plante5.Grandir(0);
+*/
+
+terr1.plante = plante1;
+terr2.plante = plante2;
+terr3.plante = plante3;
+terr4.plante = plante4;
+
+Simulation simulation = new Simulation();
+simulation.AfficherPlateau();
+System.Threading.Thread.Sleep(1000);
+simulation.plateau[0][0] = terr1;
+simulation.plateau[0][1] = terr2;
+simulation.plateau[1][0] = terr3;
+simulation.plateau[1][1] = terr4;
+simulation.AfficherPlateau();
+System.Threading.Thread.Sleep(1000);
+
+simulation.AgrandirPlateau(false);
+simulation.AgrandirPlateau(true);
+simulation.AfficherPlateau();
+System.Threading.Thread.Sleep(1000);
+simulation.positionJoueur = [1, 0];
+simulation.AfficherPlateau();
+System.Threading.Thread.Sleep(1000);

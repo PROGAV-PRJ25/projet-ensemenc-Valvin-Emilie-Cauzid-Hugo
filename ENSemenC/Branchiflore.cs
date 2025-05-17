@@ -6,7 +6,7 @@ public class Branchiflore : PlanteCommercialisable
     public override void AfficherPlateau()
     {
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"B");
+        Console.Write($" B ");
         Console.ResetColor();
     }
 
@@ -17,7 +17,7 @@ public class Branchiflore : PlanteCommercialisable
 
     public override string AfficherPlateau2()
     {
-        return "B";
+        return " B ";
         // Console.ForegroundColor = ConsoleColor.Green;
         // Console.Write($"B");
         // Console.ResetColor();

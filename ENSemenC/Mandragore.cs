@@ -6,7 +6,7 @@ public class Mandragore : PlanteCommercialisable
     public override void AfficherPlateau()
     {
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"M");
+        Console.Write($" M ");
         Console.ResetColor();
     }
 
@@ -17,7 +17,7 @@ public class Mandragore : PlanteCommercialisable
 
     public override string AfficherPlateau2()
     {
-        return "M";
+        return " M ";
         // Console.ForegroundColor = ConsoleColor.Green;
         // Console.Write($"M");
         // Console.ResetColor();

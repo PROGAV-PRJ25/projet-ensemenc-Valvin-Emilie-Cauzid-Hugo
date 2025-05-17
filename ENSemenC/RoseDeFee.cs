@@ -6,7 +6,7 @@ public class RoseDeFee : PlanteOrnementale
     public override void AfficherPlateau()
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.Write($"R");
+        Console.Write($" R ");
         Console.ResetColor();
     }
 
@@ -17,7 +17,7 @@ public class RoseDeFee : PlanteOrnementale
 
     public override string AfficherPlateau2()
     {
-        return "R";
+        return " R ";
         // Console.ForegroundColor = ConsoleColor.Cyan;
         // Console.Write($"R");
         // Console.ResetColor();
