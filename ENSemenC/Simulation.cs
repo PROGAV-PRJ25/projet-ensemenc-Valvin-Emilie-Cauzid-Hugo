@@ -13,6 +13,8 @@ public class Simulation
     // Mettre à jour plateau après (méthode à coder)
     public List<List<string>> plateauAffiche { get; set; }
     public int[] positionJoueur { get; set; }
+    private double[][] probaMeteo { get; }
+    // Normal = 1, Soleil, Canicule, Nuageux, Pluie, Orage, Neige 
 
     public Simulation()
     {
@@ -23,6 +25,7 @@ public class Simulation
         nouveauPlateau = new List<List<Terrain?>> { new List<Terrain?> { null, null, null }, new List<Terrain?> { null, null, null }, new List<Terrain?> { null, null, null } };
         plateauAffiche = new List<List<string>> { new List<string> { } };
         positionJoueur = new int[2] { 0, 0 };
+        probaMeteo = new double[][] { new double[] { 30, 25, 1, 20, 20, 2, 2 }, new double[] { 20, 35, 15, 10, 5, 15, 0 }, new double[] { 30, 10, 3, 25, 20, 10, 2 }, new double[] { 15, 15, 0, 30, 10, 5, 25 } };
     }
 
     public void AgrandirPlateau(bool ajoutLigne) // ajouter "=true" ? 
@@ -236,17 +239,221 @@ public class Simulation
         }
     }
 
+    public void BoucleDeplacementPlateau()
+    {
+        ConsoleKey touche;
+        bool fin = false;
+        do
+        {
+            AfficherPlateau();
+            touche = Console.ReadKey().Key;
+            if (touche == ConsoleKey.LeftArrow)
+            {
+                DeplacementPlateau(Orientation.Ouest);
+            }
+            else if (touche == ConsoleKey.RightArrow)
+            {
+                DeplacementPlateau(Orientation.Est);
+            }
+            else if (touche == ConsoleKey.UpArrow)
+            {
+                DeplacementPlateau(Orientation.Nord);
+            }
+            else if (touche == ConsoleKey.DownArrow)
+            {
+                DeplacementPlateau(Orientation.Sud);
+            }
+            else if (touche == ConsoleKey.Enter)
+            {
+                fin = true;
+            }
+        }
+        while (!fin);
+    }
+
     public int BoucleChoixAction()
     {
-        int action = 0;
-        // Actions possibles 
-        // Arroser 
-        // Retirer Plante 
-        // Ajouter un Terrain 
-        // Récupérer le fruit 
-        // Vendre 
-        // Annuler 
+        int action = -1;
+        char testConfirmation;
+        bool confirmation;
+        bool testAction = false;
+        int selecteur = 0;
+
+        // Actions possibles
+        // Arroser
+        // Retirer Plante
+        // Ajouter un Terrain
+        // Récupérer le fruit (à faire + tard)
+        // Vendre (à faire + tard)
+        // Annuler
         // Quitter le jeu
+
+        do
+        {
+            confirmation = false;
+            Console.Clear();
+            AfficherPlateau();
+
+            if (testAction)
+            {
+                Console.WriteLine("Action impossible\n");
+            }
+            Console.WriteLine("Que souhaitez-vous faire ?");
+
+            if (selecteur == 0)
+            {
+                Console.Write("-->");
+            }
+            Console.WriteLine("\t- Arroser le sol");
+            Console.ResetColor();
+
+            if (selecteur == 1)
+            {
+                Console.Write("-->");
+            }
+            Console.WriteLine("\t- Retirer les plantes");
+            Console.ResetColor();
+
+            if (selecteur == 2)
+            {
+                Console.Write("-->");
+            }
+            Console.WriteLine("\t- Ajouter un terrain");
+            Console.ResetColor();
+
+            if (selecteur == 3)
+            {
+                Console.Write("-->");
+            }
+            Console.WriteLine("\t- Ajouter une plante");
+            Console.ResetColor();
+
+            if (selecteur == 4)
+            {
+                Console.Write("-->");
+            }
+            Console.WriteLine("\t- Retour");
+            Console.ResetColor();
+
+            if (selecteur == 5)
+            {
+                Console.Write("-->");
+            }
+            Console.WriteLine("\t- Quitter le jeu");
+            Console.ResetColor();
+
+            ConsoleKey choix = Console.ReadKey().Key;
+
+            if (choix == ConsoleKey.UpArrow || choix == ConsoleKey.LeftArrow)
+            {
+                if (selecteur == 0)
+                {
+                    selecteur = 5;
+                }
+                else
+                {
+                    selecteur--;
+                }
+            }
+            else if (choix == ConsoleKey.DownArrow || choix == ConsoleKey.RightArrow)
+            {
+                selecteur = (++selecteur) % 6;
+            }
+            else if (choix == ConsoleKey.Enter)
+            {
+                action = selecteur;
+            }
+
+            if (action == 5)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nÊtes-vous sûr de vouloir quitter la partie ?");
+                Console.ResetColor();
+                Console.WriteLine("Appuyez sur O ou Y pour confirmer");
+                testConfirmation = char.ToUpper(Console.ReadKey().KeyChar);
+                if (testConfirmation == 'Y' || testConfirmation == 'O')
+                {
+                    confirmation = true;
+                }
+
+            }
+        }
+        while (action != 1 && action != 2 && action != 3 && (action != 4 || !confirmation));
+
         return action;
+    }
+
+    public void Main()
+    {
+        DateTime date = DateTime.Today;
+        Random rng = new Random();
+        Meteo meteo = Meteo.Normal;
+        Saison saison;
+        int choixMeteo;
+        int noSaison;
+
+        if ((date.Month == 03 && date.Day >= 21) || date.Month == 04 || date.Month == 05 || (date.Month == 06 && date.Day < 21))
+        {
+            noSaison = 0;
+            saison = Saison.Printemps;
+        }
+        else if ((date.Month == 06 && date.Day >= 21) || date.Month == 07 || date.Month == 08 || (date.Month == 09 && date.Day < 21))
+        {
+            noSaison = 1;
+            saison = Saison.Printemps;
+        }
+        else if ((date.Month == 09 && date.Day >= 21) || date.Month == 10 || date.Month == 11 || (date.Month == 012 && date.Day < 21))
+        {
+            noSaison = 2;
+            saison = Saison.Printemps;
+        }
+        else
+        {
+            noSaison = 3;
+            saison = Saison.Hiver;
+        }
+        Terrain.saison = saison;
+
+        int compteur = 0;
+        double valeurMeteo = 0;
+        choixMeteo = rng.Next(1, 101);
+        while (compteur < probaMeteo[0].Length && valeurMeteo < choixMeteo)
+        {
+            valeurMeteo += probaMeteo[noSaison][compteur++];
+        }
+        switch (compteur)
+        {
+            case 0:
+                meteo = Meteo.Normal;
+                break;
+
+            case 1:
+                meteo = Meteo.Soleil;
+                break;
+
+            case 2:
+                meteo = Meteo.Canicule;
+                break;
+
+            case 3:
+                meteo = Meteo.Nuageux;
+                break;
+
+            case 4:
+                meteo = Meteo.Pluie;
+                break;
+
+            case 5:
+                meteo = Meteo.Orage;
+                break;
+
+            case 6:
+                meteo = Meteo.Neige;
+                break;
+
+            default:
+                break;
+        }
+        Terrain.meteo = meteo;
     }
 }

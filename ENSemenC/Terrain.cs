@@ -29,7 +29,8 @@ public abstract class Terrain
 
     public void HumidificationSol(double crue = 0) //donne le taux d'humidité du sol après la pluie et l'arrosage
     {
-        humidite += crue;
+        humidite = Math.Min(humidite + crue, 1.0);
+        // humidite += crue;
     }
 
 
