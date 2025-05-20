@@ -19,6 +19,8 @@ public class Simulation
     private double[][] probaMeteo { get; }
     // Normal = 1, Soleil, Canicule, Nuageux, Pluie, Orage, Neige 
     public DateTime date { get; set; }
+    public int nbTerrain { get; set; }
+    public int cote { get; set; }
 
     public Simulation()
     {
@@ -31,6 +33,8 @@ public class Simulation
         positionJoueur = new int[2] { 0, 0 };
         probaMeteo = new double[][] { new double[] { 30, 25, 1, 20, 20, 2, 2 }, new double[] { 20, 35, 15, 10, 5, 15, 0 }, new double[] { 30, 10, 3, 25, 20, 10, 2 }, new double[] { 15, 15, 0, 30, 10, 5, 25 } };
         date = DateTime.Today;
+        nbTerrain = 0;
+        cote = 2;
     }
 
     public void AgrandirPlateau(bool ajoutLigne) // ajouter "=true" ? 
@@ -68,6 +72,21 @@ public class Simulation
     // Pour plateau si ligne faire boucle selon nb de valeurs + test pour savoir bonne colonne 
     // si colonne boucle sur toutes les lignes + test pour savoir quelle colonne rajouter valeur
 
+    public void AgrandirPlateau2() // ajouter "=true" ? 
+    {
+        List<Terrain?> nouvelleLigne = new List<Terrain?> { };
+        for (int i = 0; i < plateau[0].Count(); i++)
+        {
+            nouvelleLigne.Add(null);
+        }
+        plateau.Add(nouvelleLigne);
+
+        for (int i = 0; i < plateau.Count(); i++)
+        {
+            plateau[i].Add(null);
+        }
+    }
+
     public void AjouterTerrain(Terrain terrain)
     {
         if (positionJoueur[0] >= plateau[0].Count())
@@ -80,11 +99,28 @@ public class Simulation
         }
         plateau[positionJoueur[1]][positionJoueur[0]] = terrain;
         nouveauPlateau[positionJoueur[1]][positionJoueur[0]] = terrain;
+        terrain.position![0] = positionJoueur[1];
+        terrain.position![1] = positionJoueur[0];
+    }
+
+    public void AjouterTerrain2(Terrain terrain)
+    {
+        plateau[positionJoueur[1]][positionJoueur[0]] = terrain;
+        nouveauPlateau[positionJoueur[1]][positionJoueur[0]] = terrain;
+        terrain.position![0] = positionJoueur[1];
+        terrain.position![1] = positionJoueur[0];
+        nbTerrain++;
+        if (nbTerrain == cote * cote)
+        {
+            AgrandirPlateau2();
+            cote++;
+        }
     }
 
     public void AjouterPlante(Plante plante)
     {
         plateau[positionJoueur[1]][positionJoueur[0]]!.plante = plante;
+        plantes.Add(plante);
         // plante.terrain = plateau[positionJoueur[1]][positionJoueur[0]]!;
         // Vérifier que ce n'est pas null !!!
     }
@@ -290,7 +326,12 @@ public class Simulation
         bool testAction = false;
         int selecteur = 0;
 
+        bool testPlante = false;
         bool testTerrain = plateau[positionJoueur[1]][positionJoueur[0]] != null;
+        if (testTerrain)
+        {
+            testPlante = plateau[positionJoueur[1]][positionJoueur[0]]!.plante != null;
+        }
 
         // Actions possibles
         // Arroser
@@ -307,16 +348,22 @@ public class Simulation
             confirmation = false;
             Console.Clear();
             AfficherPlateau();
+            Console.WriteLine();
 
             if (testAction)
             {
                 Console.WriteLine("Action impossible\n");
+                testAction = false;
             }
             Console.WriteLine("Que souhaitez-vous faire ?");
 
             if (selecteur == 0)
             {
                 Console.Write("-->");
+            }
+            if (!testTerrain)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
             }
             Console.WriteLine("\t- Arroser le sol");
             Console.ResetColor();
@@ -325,12 +372,20 @@ public class Simulation
             {
                 Console.Write("-->");
             }
+            if (!testPlante)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
             Console.WriteLine("\t- Retirer les plantes");
             Console.ResetColor();
 
             if (selecteur == 2)
             {
                 Console.Write("-->");
+            }
+            if (testTerrain)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
             }
             Console.WriteLine("\t- Ajouter un terrain");
             Console.ResetColor();
@@ -339,7 +394,7 @@ public class Simulation
             {
                 Console.Write("-->");
             }
-            if (!testTerrain)
+            if (!testTerrain || testPlante)
             {
                 Console.ForegroundColor = ConsoleColor.Black;
             }
@@ -350,10 +405,17 @@ public class Simulation
             {
                 Console.Write("-->");
             }
-            Console.WriteLine("\t- Retour");
+            Console.WriteLine("\t- Laisser les plantes pousser");
             Console.ResetColor();
 
             if (selecteur == 5)
+            {
+                Console.Write("-->");
+            }
+            Console.WriteLine("\t- Retour");
+            Console.ResetColor();
+
+            if (selecteur == 6)
             {
                 Console.Write("-->");
             }
@@ -366,7 +428,7 @@ public class Simulation
             {
                 if (selecteur == 0)
                 {
-                    selecteur = 5;
+                    selecteur = 6;
                 }
                 else
                 {
@@ -375,14 +437,14 @@ public class Simulation
             }
             else if (choix == ConsoleKey.DownArrow || choix == ConsoleKey.RightArrow)
             {
-                selecteur = (++selecteur) % 6;
+                selecteur = (++selecteur) % 7;
             }
             else if (choix == ConsoleKey.Enter)
             {
                 action = selecteur;
             }
 
-            if (action == 5)
+            if (action == 6)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nÊtes-vous sûr de vouloir quitter la partie ?");
@@ -393,25 +455,24 @@ public class Simulation
                 {
                     confirmation = true;
                 }
-
             }
         }
-        while (action != 1 && action != 2 && (action != 3 || !testTerrain) && action != 4 && (action != 5 || !confirmation));
+        while ((action != 0 || !testTerrain) && (action != 1 || !testPlante) && (action != 2 || testTerrain) && (action != 3 || !testTerrain || testPlante) && action != 4 && action != 5 && (action != 6 || !confirmation));
 
         return action;
     }
 
-    public Terrain ChoixTerrain()
+    public Terrain? ChoixTerrain()
     {
         char testConfirmation;
         bool confirmation = false;
         string typeTerrain = "Dune";
         int selecteur = 0;
-        Terrain result;
+        Terrain? result;
         do
         {
             Console.Clear();
-            AfficherPlateau(true);
+            AfficherPlateau();
 
             if (selecteur == 0)
             {
@@ -445,13 +506,21 @@ public class Simulation
             Console.WriteLine("\t- Rocheux");
             Console.ResetColor();
 
+            if (selecteur == 4)
+            {
+                Console.Write("-->");
+                typeTerrain = "Retour";
+            }
+            Console.WriteLine("\t- Retour");
+            Console.ResetColor();
+
             ConsoleKey choix = Console.ReadKey().Key;
 
             if (choix == ConsoleKey.UpArrow || choix == ConsoleKey.LeftArrow)
             {
                 if (selecteur == 0)
                 {
-                    selecteur = 3;
+                    selecteur = 4;
                 }
                 else
                 {
@@ -460,19 +529,26 @@ public class Simulation
             }
             else if (choix == ConsoleKey.DownArrow || choix == ConsoleKey.RightArrow)
             {
-                selecteur = (++selecteur) % 4;
+                selecteur = (++selecteur) % 5;
             }
             else if (choix == ConsoleKey.Enter)
             {
-                Console.Write($"Êtes-vous sûr.e de vouloir mettre un terrain de type {typeTerrain} (cette action est ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("définitive");
-                Console.ResetColor();
-                Console.WriteLine(") ?");
+                if (selecteur < 4)
+                {
+                    Console.Write($"Êtes-vous sûr.e de vouloir mettre un terrain de type {typeTerrain} (cette action est ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("définitive");
+                    Console.ResetColor();
+                    Console.WriteLine(") ?");
 
-                Console.WriteLine("Appuyez sur O ou Y pour confirmer");
-                testConfirmation = char.ToUpper(Console.ReadKey().KeyChar);
-                if (testConfirmation == 'Y' || testConfirmation == 'O')
+                    Console.WriteLine("Appuyez sur O ou Y pour confirmer");
+                    testConfirmation = char.ToUpper(Console.ReadKey().KeyChar);
+                    if (testConfirmation == 'Y' || testConfirmation == 'O')
+                    {
+                        confirmation = true;
+                    }
+                }
+                else
                 {
                     confirmation = true;
                 }
@@ -498,6 +574,10 @@ public class Simulation
                 result = new Rocheux();
                 break;
 
+            case 4:
+                result = null;
+                break;
+
             default:
                 result = new Herbeux();
                 break;
@@ -505,13 +585,13 @@ public class Simulation
         return result;
     }
 
-    public Plante ChoixPlante()
+    public Plante? ChoixPlante()
     {
         char testConfirmation;
         bool confirmation = false;
         string typePlante = "Branchiflore";
         int selecteur = 0;
-        Plante result;
+        Plante? result;
         do
         {
             Console.Clear();
@@ -549,13 +629,21 @@ public class Simulation
             Console.WriteLine("\t- Rose de Fée");
             Console.ResetColor();
 
+            if (selecteur == 4)
+            {
+                Console.Write("-->");
+                typePlante = "Retour";
+            }
+            Console.WriteLine("\t- Retour");
+            Console.ResetColor();
+
             ConsoleKey choix = Console.ReadKey().Key;
 
             if (choix == ConsoleKey.UpArrow || choix == ConsoleKey.LeftArrow)
             {
                 if (selecteur == 0)
                 {
-                    selecteur = 3;
+                    selecteur = 4;
                 }
                 else
                 {
@@ -564,15 +652,22 @@ public class Simulation
             }
             else if (choix == ConsoleKey.DownArrow || choix == ConsoleKey.RightArrow)
             {
-                selecteur = (++selecteur) % 4;
+                selecteur = (++selecteur) % 5;
             }
             else if (choix == ConsoleKey.Enter)
             {
-                Console.WriteLine($"Êtes-vous sûr.e de vouloir planter une plante de type {typePlante} ?");
+                if (selecteur < 4)
+                {
+                    Console.WriteLine($"Êtes-vous sûr.e de vouloir planter une plante de type {typePlante} ?");
 
-                Console.WriteLine("Appuyez sur O ou Y pour confirmer");
-                testConfirmation = char.ToUpper(Console.ReadKey().KeyChar);
-                if (testConfirmation == 'Y' || testConfirmation == 'O')
+                    Console.WriteLine("Appuyez sur O ou Y pour confirmer");
+                    testConfirmation = char.ToUpper(Console.ReadKey().KeyChar);
+                    if (testConfirmation == 'Y' || testConfirmation == 'O')
+                    {
+                        confirmation = true;
+                    }
+                }
+                else
                 {
                     confirmation = true;
                 }
@@ -596,6 +691,10 @@ public class Simulation
 
             case 3:
                 result = new RoseDeFee(plateau[positionJoueur[1]][positionJoueur[0]]!);
+                break;
+
+            case 4:
+                result = null;
                 break;
 
             default:
@@ -676,14 +775,91 @@ public class Simulation
                 break;
         }
         Terrain.meteo = meteo;
+
+        if (meteo == Meteo.Pluie || meteo == Meteo.Neige)
+        {
+            foreach (List<Terrain?> liste in plateau)
+            {
+                foreach (Terrain? terrain in liste)
+                {
+                    if (terrain != null)
+                    {
+                        terrain.HumidificationSol(0.2 + Math.Pow(-1, rng.Next(0, 2)) * rng.Next(0, 21) * 0.01);
+                    }
+                }
+            }
+        }
+        else if (meteo == Meteo.Orage)
+        {
+            foreach (List<Terrain?> liste in plateau)
+            {
+                foreach (Terrain? terrain in liste)
+                {
+                    if (terrain != null)
+                    {
+                        terrain.HumidificationSol(0.4 + Math.Pow(-1, rng.Next(0, 2)) * rng.Next(0, 41) * 0.01);
+                    }
+                }
+            }
+        }
+    }
+
+    public int CalculerNbVoisins(int[] position, int espacement)
+    {
+        int result = 0;
+        int departI = Math.Max(position[0] - espacement, 0);
+        int departJ = Math.Max(position[1] - espacement, 0);
+        int finI = Math.Min(position[0] + espacement, plateau.Count() - 1);
+        int finJ = Math.Min(position[1] + espacement, plateau[0].Count() - 1);
+        for (int i = departI; i <= finI; i++)
+        {
+            Console.WriteLine($"Boucle i : {i} / Position : {position[0]} / espacement : {espacement}");
+            for (int j = departJ; j <= finJ; j++)
+            {
+                Console.WriteLine($"Boucle j : {j} / Position : {position[1]} / espacement : {espacement}");
+                if ((i != position[0] || j != position[1]) && plateau[j][i] != null && plateau[j][i]!.plante != null)
+                {
+                    result++;
+                }
+            }
+        }
+        Console.WriteLine(result);
+        System.Threading.Thread.Sleep(1000);
+        return result;
+    }
+
+    public void PasserTemps(int nbJours)
+    {
+        for (int i = 0; i < nbJours; i++)
+        {
+            foreach (Plante plante in plantes)
+            {
+                plante.Grandir(CalculerNbVoisins(plante.terrain.position!, plante.espacement));
+                plante.terrain.AdaptationSol();
+            }
+        }
+        Console.WriteLine("Appuyer sur entrée pour continuer : ");
+        Console.ReadLine();
     }
 
     public void Main()
     {
         int action;
+        char testConfirmation;
 
         do
         {
+            /*foreach (List<Terrain?> liste in plateau)
+            {
+                foreach (Terrain? terrain in liste)
+                {
+                    if (terrain != null)
+                    {
+                        Console.WriteLine($"{terrain.position![1]}, {terrain.position![0]}");
+                    }
+                }
+            }
+            System.Threading.Thread.Sleep(1000);*/
             BoucleDeplacementPlateau();
             action = BoucleChoixAction();
 
@@ -694,25 +870,62 @@ public class Simulation
                     plateau[positionJoueur[1]][positionJoueur[0]]!.HumidificationSol(0.2);
                 }
             }
+
             else if (action == 1)
             {
-                if (plateau[positionJoueur[1]][positionJoueur[0]] != null)
-                {
-                    plateau[positionJoueur[1]][positionJoueur[0]]!.plante = null;
-                }
+                plantes.Remove(plateau[positionJoueur[1]][positionJoueur[0]]!.plante!);
+                plateau[positionJoueur[1]][positionJoueur[0]]!.plante = null;
             }
+
             else if (action == 2)
             {
-                BoucleDeplacementPlateau(true);
-                Terrain nvTerrain = ChoixTerrain();
-                AjouterTerrain(nvTerrain);
+                // BoucleDeplacementPlateau(true);
+                Terrain? nvTerrain = ChoixTerrain();
+                if (nvTerrain != null)
+                {
+                    AjouterTerrain2(nvTerrain);
+                }
             }
+
             else if (action == 3)
             {
-                Plante nvPlante = ChoixPlante();
-                AjouterPlante(nvPlante);
+                Plante? nvPlante = ChoixPlante();
+                if (nvPlante != null)
+                {
+                    AjouterPlante(nvPlante);
+                }
+            }
+
+            else if (action == 4)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("\nÊtes-vous sûr de vouloir revenir plus tard ?");
+                Console.ResetColor();
+                Console.WriteLine("Appuyez sur O ou Y pour confirmer");
+                testConfirmation = char.ToUpper(Console.ReadKey().KeyChar);
+                if (testConfirmation == 'Y' || testConfirmation == 'O')
+                {
+                    int nbJours = -1;
+                    Console.Clear();
+                    while (nbJours <= 0)
+                    {
+                        Console.Write("Dans combien de jours souhaitez-vous revenir : ");
+                        try
+                        {
+                            int test = Convert.ToInt32(Console.ReadLine()!);
+                            nbJours = test;
+                        }
+                        catch (Exception)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Écrivez une valeur numérique supérieure à 0 s'il vous plaît");
+                        }
+                    }
+                    PasserTemps(nbJours);
+                }
+
             }
         }
-        while (action != 5);
+        while (action != 6);
     }
 }
