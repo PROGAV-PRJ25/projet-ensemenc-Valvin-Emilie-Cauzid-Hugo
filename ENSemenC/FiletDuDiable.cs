@@ -22,4 +22,29 @@ public class FiletDuDiable : PlanteInvasive
         // Console.Write($"F");
         // Console.ResetColor();
     }
+
+    public override string Informations =>
+        $"Nom : {nom} \n"+
+        $"Nature : {nature}\n" +
+        $"Saison préférée : {saisonPreferee}\n"+
+        "Stade d'évolution :\n"+ //ça je ne sais pas encore
+        $"Age :{age}\n"+ 
+        "Prix : \n"; //on le définit avant ?
+
+    public override string AsciiArt =>
+            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+            "⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⣦⡀⠀⠀⠀⠀⢹⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+            " ⣠⣴⣶⣤⣀⣤⣶⣶⣿⣿⣿⣿⣿⣿⣶⣦⣤⣾⣿⣿⣆⠀\n" +
+            " ⠚⠉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀\n" +
+            "⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⡿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⢀⠀\n" +
+            "⠀⠀⣸⣿⣿⣿⣿⠟⠋⠀⠀⠀⠀⠀⠈⠙⢿⣿⣿⣿⣿⣿⣿⣿⣄⣀⣀⣼⡇⠀\n" +
+            "⠀⠀⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇\n" +
+            "⠀⠘⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀\n" +
+            "⠀⠀⠈⢿⣿⣿⣿⣷⣤⣤⣤⣤⣤⠂⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⡇\n" +
+            "⠀⠀⠀⠀⠉⠛⠿⢿⣿⡿⠿⠛⠁⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀\n" +
+            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡁⠀⢀⡤⠀\n" +
+            "⠀⢰⣶⣤⣤⣤⣤⣤⣤⣤⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠀\n" +
+            "⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠁⠀\n" +
+            "⠀⠘⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠁⠀\n";
+
 }
