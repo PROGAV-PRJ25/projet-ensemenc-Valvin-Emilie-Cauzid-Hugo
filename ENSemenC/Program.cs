@@ -119,3 +119,6 @@ Terrain.meteo = Meteo.Soleil;
 terr1.GererLumiere();
 terr1.HumidificationSol(0.1);
 plante5.Grandir(0);
+
+Simulation simulation = new Simulation();
+simulation.AfficherInventaire();
