@@ -15,6 +15,7 @@ public abstract class Plante
     public int esperanceDeVie { get; set; } //âge de la plante évolue comme la croissance, stade maximal
     public int age { get; set; } //qui augmente avec le temps qui passe
     public bool vivante { get; set; }
+
     public Plante(string nom, string nature, Saison saisonPreferee, Terrain terrain, int espacement, int place, double besoinsEauMin, double besoinsEauMax, double besoinsLuminositeMin, double besoinsLuminositeMax, int vitesseDeCroissance, int esperanceDeVie, int croissanceMin)
     {
         this.nom = nom;
@@ -35,9 +36,9 @@ public abstract class Plante
 
     public virtual void Grandir(int nbVoisins)
     {
-        // Prendre pourcentage ajoutés en paramètres ?
-        // + multiplieur max (si pourcentage == 100)
-
+        // Calcul de la croissance de la plante selon un système de pourcentage 
+        // Si la plante est au-dessus de 50% elle peut grandir, elle meurt sinon
+        // La plante peut grandir entre 75% et 125% de sa vitesse de croissance moyenne 
         if (vivante)
         {
             decimal pourcentage = 0;
@@ -88,13 +89,8 @@ public abstract class Plante
                 Console.WriteLine("Luminosité pas trop OK");
                 pourcentage += 5;
             }
-            /* créer méthode PossedeVoisins qui renvoie le nb de cases occupées dans le carré (diagonales inclues) de centre terrain 
-            // switch case pour gérer le nb de pourcentage en + selon le nb de voisins ? 
-            // problème ==> différencier tous les cas possibles selon le nb d'espacement
-            // Sinon pourcentage augmente proportionnelemnt inverse au nb de voisins
-            // ex : pourcentage += (1 / (nbVoisins + 1)) * 20 
-            // problème ==> les plantes ayant besoin de bcp d'espace ont plus de chances de moins grandir */
 
+            // Pourcentage dégressif selon le nb de voisins
             Console.WriteLine($"Pourcentage voisins : {Math.Round(1 / Convert.ToDecimal(nbVoisins + 1), 2) * 20m}");
             pourcentage += Math.Round(1 / Convert.ToDecimal(nbVoisins + 1), 2) * 20m;
 
@@ -110,18 +106,16 @@ public abstract class Plante
                 age += 1;
                 Console.WriteLine($"{croissance}");
             }
-            // throw new NotImplementedException();
         }
         else
         {
             Console.WriteLine($"La plante est morte (RIP)");
         }
-
     }
 
-    public void Vieillir(int annee = 1)
+    public void Vieillir(int jours = 1)
     {
-        age += annee;
+        age += jours;
         if (age > esperanceDeVie)
         {
             vivante = false;

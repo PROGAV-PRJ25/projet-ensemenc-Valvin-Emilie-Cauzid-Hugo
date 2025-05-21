@@ -42,54 +42,47 @@ public abstract class Terrain
 
     public void GererLumiere()
     {
-
+        // Change la lumière selon la météo pour toutes les instances
         switch (meteo)
         {
             case Meteo.Normal:
                 luminosite = baseLuminosite[1] + Math.Pow(-1, rng.Next(0, 2)) * 0.01 * rng.Next(0, 10);
-                // A ajuster selon si utilisation % ou valeurs chiffrées
                 break;
 
             case Meteo.Soleil:
                 luminosite = baseLuminosite[2] + Math.Pow(-1, rng.Next(0, 2)) * 0.01 * rng.Next(0, 5);
-                // A ajuster selon si utilisation % ou valeurs chiffrées
                 break;
 
             case Meteo.Canicule:
                 luminosite = baseLuminosite[3];
-                // A ajuster selon si utilisation % ou valeurs chiffrées
                 break;
 
             case Meteo.Nuageux:
                 luminosite = baseLuminosite[4] + Math.Pow(-1, rng.Next(0, 2)) * 0.01 * rng.Next(0, 20);
-                // A ajuster selon si utilisation % ou valeurs chiffrées
                 break;
 
             case Meteo.Pluie:
                 luminosite = baseLuminosite[5] + Math.Pow(-1, rng.Next(0, 2)) * 0.01 * rng.Next(0, 10);
-                // A ajuster selon si utilisation % ou valeurs chiffrées
                 break;
 
             case Meteo.Orage:
                 luminosite = baseLuminosite[6] + Math.Pow(-1, rng.Next(0, 2)) * 0.01 * rng.Next(0, 10);
-                // A ajuster selon si utilisation % ou valeurs chiffrées
                 break;
 
             case Meteo.Neige:
                 luminosite = baseLuminosite[5] + Math.Pow(-1, rng.Next(0, 2)) * 0.01 * rng.Next(0, 20);
                 // Même valeur que Pluie
-                // A ajuster selon si utilisation % ou valeurs chiffrées
                 break;
 
             default:
                 luminosite = baseLuminosite[0];
                 break;
         }
-        // A calculer selon la meteo avec des tables
     }
 
     virtual public void GererTemperature()
     {
+        // Met à jour la température pour une instance du terrain
         switch (saison)
         {
             case Saison.Printemps:
