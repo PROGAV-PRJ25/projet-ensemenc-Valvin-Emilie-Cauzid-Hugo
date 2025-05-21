@@ -74,8 +74,12 @@ public class Simulation
     {
         Console.Clear();
 
-        // Afficher date et tt
-
+        //afficher la date
+        DateTime thisDay = DateTime.Today;
+        Console.WriteLine(thisDay.ToString("D"));
+        Console.WriteLine($"Saison : {Terrain.Saison}");
+        Console.WriteLine($"Météo : {Terrain.Meteo}");
+        Console.WriteLine($"Luminosité : {Terrain.luminosite}");
         bool coulFond = true;
         int largeur = plateau.Count;
         int longueur = plateau[0].Count;
@@ -756,7 +760,7 @@ public class Simulation
             date = date.AddDays(1);
             MajMeteo();
         }
-        // Afficher inventaire
+        AfficherInventaire(); // Affiche la liste des plantes et leur nombre
         Console.WriteLine("Appuyer sur entrée pour continuer : ");
         Console.ReadLine();
     }
@@ -809,7 +813,16 @@ public class Simulation
 
             else if (action == 4)
             {
-                // Afficher infos
+                // Afficher infos sur le terrain et plante s'il y en a une
+                Console.WriteLine($"Sur ce terrain, la température est de {Terrain.temperature}, l'humidité de {Terrain.humidite} et le taux de retention {Terrain.retention}")
+                bool testPlante = plateau[positionJoueur[1]][positionJoueur[0]]!.plante != null;
+                if (testPlante)
+                {
+                    plateau[positionJoueur[1]][positionJoueur[0]]!.plante.AsciiArt;
+                    plateau[positionJoueur[1]][positionJoueur[0]]!.plante.Informations
+                }
+                
+
             }
 
             else if (action == 5)
@@ -847,9 +860,6 @@ public class Simulation
     }
     public void AfficherInventaire()
     {
-        //afficher la date
-        DateTime thisDay = DateTime.Today;
-        Console.WriteLine(thisDay.ToString("D"));
         //parcourir liste pour compter combien de chaque
         int nombreBranchiflore = 0;
         int nombreFiletDuDiable = 0;
@@ -880,25 +890,10 @@ public class Simulation
             }
         }
         Console.WriteLine("Inventaire :");
-        if (nombreBranchiflore > 0)
-        {
-            Console.Write($"{nombreBranchiflore} 🌿");
-        }
-        else if (nombreFiletDuDiable > 0)
-        {
-            Console.Write($"{nombreFiletDuDiable} 👿");
-        }
-        else if (nombreFruitEtoile > 0)
-        {
-            Console.Write($"{nombreFruitEtoile} ⭐");
-        }
-        else if (nombreMandragore > 0)
-        {
-            Console.Write($"{nombreMandragore} 🌱");
-        }
-        else if (nombreRoseDeFee > 0)
-        {
-            Console.Write($"{nombreRoseDeFee} 🌷");
-        }
+        Console.Write($"{nombreBranchiflore} 🌿");
+        Console.Write($"{nombreFiletDuDiable} 👿");
+        Console.Write($"{nombreFruitEtoile} ⭐");
+        Console.Write($"{nombreMandragore} 🌱");
+        Console.Write($"{nombreRoseDeFee} 🌷");
     }
 }
