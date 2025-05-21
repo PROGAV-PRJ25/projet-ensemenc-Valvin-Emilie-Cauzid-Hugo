@@ -10,11 +10,6 @@ public class Simulation
     Random rng = new Random();
     public List<Plante> plantes { get; set; }
     public List<List<Terrain?>> plateau { get; set; }
-    public List<List<Terrain?>> nouveauPlateau { get; set; }
-    // A afficher lorsque l'utilisateur veut ajouter un terrain 
-    // Cette liste possède une colonne et une ligne vide de plus pour permettre au joueur d'étendre son terrain
-    // Mettre à jour plateau après (méthode à coder)
-    public List<List<string>> plateauAffiche { get; set; }
     public int[] positionJoueur { get; set; }
     private double[][] probaMeteo { get; }
     // Normal = 1, Soleil, Canicule, Nuageux, Pluie, Orage, Neige 
@@ -28,8 +23,6 @@ public class Simulation
         // Initialisation en temps que terrain de taille 1x1 vide
         plateau = new List<List<Terrain?>> { new List<Terrain?> { null, null }, new List<Terrain?> { null, null } };
         // Initialisation en temps que terrain de taille 2x2 vide
-        nouveauPlateau = new List<List<Terrain?>> { new List<Terrain?> { null, null, null }, new List<Terrain?> { null, null, null }, new List<Terrain?> { null, null, null } };
-        plateauAffiche = new List<List<string>> { new List<string> { } };
         positionJoueur = new int[2] { 0, 0 };
         probaMeteo = new double[][] { new double[] { 30, 25, 1, 20, 20, 2, 2 }, new double[] { 20, 35, 15, 10, 5, 15, 0 }, new double[] { 30, 10, 3, 25, 20, 10, 2 }, new double[] { 15, 15, 0, 30, 10, 5, 25 } };
         date = DateTime.Today;
@@ -37,80 +30,32 @@ public class Simulation
         cote = 2;
     }
 
-    public void AgrandirPlateau(bool ajoutLigne) // ajouter "=true" ? 
-    {
-        if (ajoutLigne)
-        {
-            List<Terrain?> nouvelleLigne = new List<Terrain?> { };
-            List<Terrain?> nouvelleLigneNP = new List<Terrain?> { };
-            for (int i = 0; i < nouveauPlateau[0].Count(); i++)
-            {
-                if (i < plateau[0].Count())
-                {
-                    nouvelleLigne.Add(null);
-                }
-                nouvelleLigneNP.Add(null);
-            }
-            plateau.Add(nouvelleLigne);
-            nouveauPlateau.Add(nouvelleLigneNP);
-        }
-        else
-        {
-            for (int i = 0; i < nouveauPlateau.Count(); i++)
-            {
-                if (i < plateau.Count())
-                {
-                    plateau[i].Add(null);
-                }
-                nouveauPlateau[i].Add(null);
-            }
-        }
-    }
-    // Sert à agrandir plateau (et nouveauPlateau ?) lorsque l'utilisateur veut ajouter des plantes hors des limites déjà définies
-    // Pour nouveauPlateau si ajout ligne faire boucle selon nb de valeurs puis add
-    // si colonne faire une boucle dans toutes les lignes et ajouter 1 null
-    // Pour plateau si ligne faire boucle selon nb de valeurs + test pour savoir bonne colonne 
-    // si colonne boucle sur toutes les lignes + test pour savoir quelle colonne rajouter valeur
 
-    public void AgrandirPlateau2() // ajouter "=true" ? 
+    public void AgrandirPlateau2()
     {
         List<Terrain?> nouvelleLigne = new List<Terrain?> { };
+        // Ajout d'une ligne de terrains vide
         for (int i = 0; i < plateau[0].Count(); i++)
         {
             nouvelleLigne.Add(null);
         }
         plateau.Add(nouvelleLigne);
 
+        // Ajout d'une colonne de terrains vide
         for (int i = 0; i < plateau.Count(); i++)
         {
             plateau[i].Add(null);
         }
     }
 
-    public void AjouterTerrain(Terrain terrain)
-    {
-        if (positionJoueur[0] >= plateau[0].Count())
-        {
-            AgrandirPlateau(false);
-        }
-        if (positionJoueur[1] >= plateau.Count())
-        {
-            AgrandirPlateau(true);
-        }
-        plateau[positionJoueur[1]][positionJoueur[0]] = terrain;
-        nouveauPlateau[positionJoueur[1]][positionJoueur[0]] = terrain;
-        terrain.position![0] = positionJoueur[1];
-        terrain.position![1] = positionJoueur[0];
-    }
-
     public void AjouterTerrain2(Terrain terrain)
     {
+        // Ajout terrain dans le plateau + MAJ de la position du terrain dans l'itération
         plateau[positionJoueur[1]][positionJoueur[0]] = terrain;
-        nouveauPlateau[positionJoueur[1]][positionJoueur[0]] = terrain;
         terrain.position![0] = positionJoueur[1];
         terrain.position![1] = positionJoueur[0];
         nbTerrain++;
-        if (nbTerrain == cote * cote)
+        if (nbTerrain == cote * cote && cote <= 10)
         {
             AgrandirPlateau2();
             cote++;
@@ -125,51 +70,15 @@ public class Simulation
         // Vérifier que ce n'est pas null !!!
     }
 
-    public void AfficherPlateau(bool nvPlateau = false)
+    public void AfficherPlateau()
     {
-        /*
-        // plateau[i][j];
-        // On doit afficher la plante dans la petite case
-        // Utiliser foreach (ou équivalent for) ? 
-        // --> permet de passer partout de manière sûre 
-        // --> comment faire si case vide sans list nullable
-        // Créer un terrain vide ?
-        // --> on peut passer dans toutes les cases avec la même fonction
-        // --> relier terrain avec plante
-        // --> bcp d'utilisatiion mémoire
-        // Utiliser la liste de plante et remonter au terrain pour savoir où mettre des plantes <==
-        // --> trouver comment trouver l'emplacement sur l'affichage (grâce à une liste de liste dédiée à l'affichage ?)
-        // --> semble être la meilleure solution pour le moment */
         Console.Clear();
-        List<List<Terrain?>> plato;
-        if (nvPlateau)
-        { plato = nouveauPlateau; }
-        else
-        { plato = plateau; }
-        /*
-        // Création d'une liste de listes contenant " "
-        List<string> ligne = new List<string> { };
-        for (int i = 0; i < plateau.Count(); i++)
-        {
-            for (int j = 0; j < plateau[0].Count(); j++)
-            {
-                ligne.Add(" ");
-            }
-            plateauAffiche.Add(ligne);
-            ligne = new List<string> { };
-        }
 
+        // Afficher date et tt
 
-        // On remplit ensuite les bonnes cases contenant les plantes de la lettre qui convient
-        int[] positionPlante = new int[2];
-        foreach (Plante plante in plantes)
-        {
-            positionPlante = plante.terrain.position;
-            plateauAffiche[positionPlante[0]][positionPlante[1]] = plante.AfficherPlateau2();
-        } */
         bool coulFond = true;
-        int largeur = plato.Count;
-        int longueur = plato[0].Count;
+        int largeur = plateau.Count;
+        int longueur = plateau[0].Count;
         Console.Write("\t ");
         for (int i = 0; i < longueur; i++)
         // Affichage du numéro des colonnes
@@ -186,20 +95,21 @@ public class Simulation
                 coulFond = true;
                 if (positionJoueur[0] == j && positionJoueur[1] == i)
                 {
+                    // Fond de couleur blanche pour indiquer l'emplacement du joueur
                     coulFond = false;
                     Console.BackgroundColor = ConsoleColor.White;
                 }
                 Console.Write(" ");
-                // On passe ensuite dans tout le plateau en affichant les lettres si la case possède un terrain et s'il possède une plante
-                if (plato[i][j] != null)
+                // On passe ensuite dans tout le plateau en affichant les bonnes choses selon ce que la case possède
+                if (plateau[i][j] != null)
                 {
                     if (coulFond)
                     {
-                        plato[i][j]!.GetCouleur();
+                        plateau[i][j]!.GetCouleur();
                     }
-                    if (plato[i][j]!.plante != null)
+                    if (plateau[i][j]!.plante != null)
                     {
-                        plato[i][j]!.plante!.AfficherPlateau();
+                        plateau[i][j]!.plante!.AfficherPlateau();
                         // le ! sert à affirmer que la valeur ne peux pas être null
                     }
                     else
@@ -214,9 +124,6 @@ public class Simulation
                     Console.Write(" X ");
                     Console.ResetColor();
                 }
-                /*// écriture de la valeur en i,j
-                // Console.Write($"{plateauAffiche[i][j]}");
-                // Console.ResetColor();*/
 
                 // séparateur
                 if (j != longueur - 1)
@@ -232,7 +139,6 @@ public class Simulation
             }
 
             // Affichage du numéro de la ligne
-
             if (!coulFond)
             {
                 Console.BackgroundColor = ConsoleColor.White;
@@ -243,26 +149,21 @@ public class Simulation
         }
     }
 
-    public void DeplacementPlateau(Orientation orientation, bool nvPlateau = false)
+    public void DeplacementPlateau(Orientation orientation)
     {
-        List<List<Terrain?>> plato;
-        if (nvPlateau)
-        { plato = nouveauPlateau; }
-        else
-        { plato = plateau; }
-
+        // Met à jour la position du joueur dans le plateau
         switch (orientation)
         {
             case Orientation.Nord:
                 positionJoueur[1]--;
                 if (positionJoueur[1] < 0)
                 {
-                    positionJoueur[1] = plato.Count() - 1;
+                    positionJoueur[1] = plateau.Count() - 1;
                 }
                 break;
             case Orientation.Est:
                 positionJoueur[0]++;
-                if (positionJoueur[0] >= plato[0].Count())
+                if (positionJoueur[0] >= plateau[0].Count())
                 {
                     positionJoueur[0] = 0;
                 }
@@ -271,12 +172,12 @@ public class Simulation
                 positionJoueur[0]--;
                 if (positionJoueur[0] < 0)
                 {
-                    positionJoueur[0] = plato[0].Count() - 1;
+                    positionJoueur[0] = plateau[0].Count() - 1;
                 }
                 break;
             case Orientation.Sud:
                 positionJoueur[1]++;
-                if (positionJoueur[1] >= plato.Count())
+                if (positionJoueur[1] >= plateau.Count())
                 {
                     positionJoueur[1] = 0;
                 }
@@ -286,29 +187,30 @@ public class Simulation
         }
     }
 
-    public void BoucleDeplacementPlateau(bool nvPlateau = false)
+    public void BoucleDeplacementPlateau()
     {
         ConsoleKey touche;
         bool fin = false;
         do
         {
-            AfficherPlateau(nvPlateau);
+            // Lit la touche pressée pour bouger dans le plateau
+            AfficherPlateau();
             touche = Console.ReadKey().Key;
             if (touche == ConsoleKey.LeftArrow)
             {
-                DeplacementPlateau(Orientation.Ouest, nvPlateau);
+                DeplacementPlateau(Orientation.Ouest);
             }
             else if (touche == ConsoleKey.RightArrow)
             {
-                DeplacementPlateau(Orientation.Est, nvPlateau);
+                DeplacementPlateau(Orientation.Est);
             }
             else if (touche == ConsoleKey.UpArrow)
             {
-                DeplacementPlateau(Orientation.Nord, nvPlateau);
+                DeplacementPlateau(Orientation.Nord);
             }
             else if (touche == ConsoleKey.DownArrow)
             {
-                DeplacementPlateau(Orientation.Sud, nvPlateau);
+                DeplacementPlateau(Orientation.Sud);
             }
             else if (touche == ConsoleKey.Enter)
             {
@@ -326,6 +228,7 @@ public class Simulation
         bool testAction = false;
         int selecteur = 0;
 
+        //Tests afin de savoir si il y a un terrain et/ou une plante sur la position du joueur
         bool testPlante = false;
         bool testTerrain = plateau[positionJoueur[1]][positionJoueur[0]] != null;
         if (testTerrain)
@@ -405,17 +308,28 @@ public class Simulation
             {
                 Console.Write("-->");
             }
-            Console.WriteLine("\t- Laisser les plantes pousser");
+            if (!testTerrain)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
+            Console.WriteLine("\t- Afficher les informations du terrain");
             Console.ResetColor();
 
             if (selecteur == 5)
             {
                 Console.Write("-->");
             }
-            Console.WriteLine("\t- Retour");
+            Console.WriteLine("\t- Laisser les plantes pousser");
             Console.ResetColor();
 
             if (selecteur == 6)
+            {
+                Console.Write("-->");
+            }
+            Console.WriteLine("\t- Retour");
+            Console.ResetColor();
+
+            if (selecteur == 7)
             {
                 Console.Write("-->");
             }
@@ -428,7 +342,7 @@ public class Simulation
             {
                 if (selecteur == 0)
                 {
-                    selecteur = 6;
+                    selecteur = 7;
                 }
                 else
                 {
@@ -437,14 +351,14 @@ public class Simulation
             }
             else if (choix == ConsoleKey.DownArrow || choix == ConsoleKey.RightArrow)
             {
-                selecteur = (++selecteur) % 7;
+                selecteur = (++selecteur) % 8;
             }
             else if (choix == ConsoleKey.Enter)
             {
                 action = selecteur;
             }
 
-            if (action == 6)
+            if (action == 7)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nÊtes-vous sûr de vouloir quitter la partie ?");
@@ -457,7 +371,7 @@ public class Simulation
                 }
             }
         }
-        while ((action != 0 || !testTerrain) && (action != 1 || !testPlante) && (action != 2 || testTerrain) && (action != 3 || !testTerrain || testPlante) && action != 4 && action != 5 && (action != 6 || !confirmation));
+        while ((action != 0 || !testTerrain) && (action != 1 || !testPlante) && (action != 2 || testTerrain) && (action != 3 || !testTerrain || testPlante) && (action != 4 || !testTerrain) && action != 5 && action != 6 && (action != 7 || !confirmation));
 
         return action;
     }
@@ -710,7 +624,7 @@ public class Simulation
         Saison saison;
         int choixMeteo;
         int noSaison;
-
+        // Calcul de la saison selon la date
         if ((date.Month == 03 && date.Day >= 21) || date.Month == 04 || date.Month == 05 || (date.Month == 06 && date.Day < 21))
         {
             noSaison = 0;
@@ -733,6 +647,7 @@ public class Simulation
         }
         Terrain.saison = saison;
 
+        // Calcul de la meteo selon la saison
         int compteur = 0;
         double valeurMeteo = 0;
         choixMeteo = rng.Next(1, 101);
@@ -776,6 +691,7 @@ public class Simulation
         }
         Terrain.meteo = meteo;
 
+        // Crue et ajout de l'eau sur les sols si pluie/orage/neige
         if (meteo == Meteo.Pluie || meteo == Meteo.Neige)
         {
             foreach (List<Terrain?> liste in plateau)
@@ -837,7 +753,9 @@ public class Simulation
                 plante.Grandir(CalculerNbVoisins(plante.terrain.position!, plante.espacement));
                 plante.terrain.AdaptationSol();
             }
+            date = date.AddDays(1);
         }
+        // Afficher inventaire
         Console.WriteLine("Appuyer sur entrée pour continuer : ");
         Console.ReadLine();
     }
@@ -849,22 +767,12 @@ public class Simulation
 
         do
         {
-            /*foreach (List<Terrain?> liste in plateau)
-            {
-                foreach (Terrain? terrain in liste)
-                {
-                    if (terrain != null)
-                    {
-                        Console.WriteLine($"{terrain.position![1]}, {terrain.position![0]}");
-                    }
-                }
-            }
-            System.Threading.Thread.Sleep(1000);*/
             BoucleDeplacementPlateau();
             action = BoucleChoixAction();
 
             if (action == 0)
             {
+                // Humidifier le sol
                 if (plateau[positionJoueur[1]][positionJoueur[0]] != null)
                 {
                     plateau[positionJoueur[1]][positionJoueur[0]]!.HumidificationSol(0.2);
@@ -873,13 +781,14 @@ public class Simulation
 
             else if (action == 1)
             {
+                // Enlever une plante
                 plantes.Remove(plateau[positionJoueur[1]][positionJoueur[0]]!.plante!);
                 plateau[positionJoueur[1]][positionJoueur[0]]!.plante = null;
             }
 
             else if (action == 2)
             {
-                // BoucleDeplacementPlateau(true);
+                // Ajouter un terrain
                 Terrain? nvTerrain = ChoixTerrain();
                 if (nvTerrain != null)
                 {
@@ -889,6 +798,7 @@ public class Simulation
 
             else if (action == 3)
             {
+                // Ajouter une plante
                 Plante? nvPlante = ChoixPlante();
                 if (nvPlante != null)
                 {
@@ -898,6 +808,12 @@ public class Simulation
 
             else if (action == 4)
             {
+                // Afficher infos
+            }
+
+            else if (action == 5)
+            {
+                // Passer du temps
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("\nÊtes-vous sûr de vouloir revenir plus tard ?");
                 Console.ResetColor();
@@ -926,7 +842,7 @@ public class Simulation
 
             }
         }
-        while (action != 6);
+        while (action != 7);
     }
     public void AfficherInventaire()
     {
@@ -939,40 +855,51 @@ public class Simulation
         int nombreFruitEtoile = 0;
         int nombreMandragore = 0;
         int nombreRoseDeFee = 0;
-        for (int i = 0; i < plantes.Count; i++) {
-            if (plantes[i].nom=="Branchiflore") {
+        for (int i = 0; i < plantes.Count; i++)
+        {
+            if (plantes[i].nom == "Branchiflore")
+            {
                 nombreBranchiflore++;
             }
-            else if (plantes[i].nom=="FiletDuDiable") {
+            else if (plantes[i].nom == "FiletDuDiable")
+            {
                 nombreFiletDuDiable++;
             }
-            else if (plantes[i].nom=="FruitEtoile") {
+            else if (plantes[i].nom == "FruitEtoile")
+            {
                 nombreFruitEtoile++;
             }
-            else if (plantes[i].nom=="Mandragore") {
+            else if (plantes[i].nom == "Mandragore")
+            {
                 nombreMandragore++;
             }
-            else if (plantes[i].nom=="RoseDeFee") {
+            else if (plantes[i].nom == "RoseDeFee")
+            {
                 nombreRoseDeFee++;
             }
         }
         Console.WriteLine("Inventaire :");
-        if (nombreBranchiflore>0) {
+        if (nombreBranchiflore > 0)
+        {
             Console.Write($"{nombreBranchiflore} 🌿");
         }
-        else if (nombreFiletDuDiable>0) {
+        else if (nombreFiletDuDiable > 0)
+        {
             Console.Write($"{nombreFiletDuDiable} 👿");
         }
-        else if (nombreFruitEtoile>0) {
+        else if (nombreFruitEtoile > 0)
+        {
             Console.Write($"{nombreFruitEtoile} ⭐");
         }
-        else if (nombreMandragore>0) {
+        else if (nombreMandragore > 0)
+        {
             Console.Write($"{nombreMandragore} 🌱");
         }
-        else if (nombreRoseDeFee>0) {
+        else if (nombreRoseDeFee > 0)
+        {
             Console.Write($"{nombreRoseDeFee} 🌷");
         }
     }
-    
+
 
 }
