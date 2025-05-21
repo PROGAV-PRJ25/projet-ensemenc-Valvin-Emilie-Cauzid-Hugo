@@ -754,6 +754,7 @@ public class Simulation
                 plante.terrain.AdaptationSol();
             }
             date = date.AddDays(1);
+            MajMeteo();
         }
         // Afficher inventaire
         Console.WriteLine("Appuyer sur entrée pour continuer : ");
@@ -900,6 +901,4 @@ public class Simulation
             Console.Write($"{nombreRoseDeFee} 🌷");
         }
     }
-
-
 }
