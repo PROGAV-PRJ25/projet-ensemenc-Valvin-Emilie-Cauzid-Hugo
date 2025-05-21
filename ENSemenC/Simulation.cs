@@ -77,8 +77,8 @@ public class Simulation
         //afficher la date
         DateTime thisDay = DateTime.Today;
         Console.WriteLine(thisDay.ToString("D"));
-        Console.WriteLine($"Saison : {Terrain.Saison}");
-        Console.WriteLine($"Météo : {Terrain.Meteo}");
+        Console.WriteLine($"Saison : {Terrain.saison}");
+        Console.WriteLine($"Météo : {Terrain.meteo}");
         Console.WriteLine($"Luminosité : {Terrain.luminosite}");
         bool coulFond = true;
         int largeur = plateau.Count;
@@ -814,12 +814,12 @@ public class Simulation
             else if (action == 4)
             {
                 // Afficher infos sur le terrain et plante s'il y en a une
-                Console.WriteLine($"Sur ce terrain, la température est de {Terrain.temperature}, l'humidité de {Terrain.humidite} et le taux de retention {Terrain.retention}")
+                Console.WriteLine($"Sur ce terrain, la température est de {terrain.temperature}, l'humidité de {Terrain.humidite} et le taux de retention {Terrain.retention}");
                 bool testPlante = plateau[positionJoueur[1]][positionJoueur[0]]!.plante != null;
                 if (testPlante)
                 {
-                    plateau[positionJoueur[1]][positionJoueur[0]]!.plante.AsciiArt;
-                    plateau[positionJoueur[1]][positionJoueur[0]]!.plante.Informations
+                    plateau[positionJoueur[1]][positionJoueur[0]]!.plante.AsciiArt();
+                    plateau[positionJoueur[1]][positionJoueur[0]]!.plante.Informations();
                 }
                 
 

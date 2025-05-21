@@ -43,3 +43,11 @@ E:\ENSC\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debu
 E:\ENSC\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.pdb
 E:\ENSC\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.genruntimeconfig.cache
 E:\ENSC\C#\S6\Projet\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ref\ENSemenC.dll
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.GeneratedMSBuildEditorConfig.editorconfig
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.AssemblyInfoInputs.cache
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.AssemblyInfo.cs
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.csproj.CoreCompileInputs.cache
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.sourcelink.json
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.dll
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\refint\ENSemenC.dll
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.pdb

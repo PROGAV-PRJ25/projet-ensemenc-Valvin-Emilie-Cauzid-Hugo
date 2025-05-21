@@ -23,32 +23,32 @@ public class FruitEtoile : PlanteComestible
         // Console.ResetColor();
     }
 
-    public override string Informations =>
-        $"Nom : {nom} \n"+
-        $"Nature : {nature}\n" +
-        $"Saison préférée : {saisonPreferee}\n"+
-        "Stade d'évolution :\n"+ //ça je ne sais pas encore
-        $"Age :{age}\n"+ 
-        "Prix : \n"; //on le définit avant ?
+    public override void Informations() {
+        Console.WriteLine($"Nom : {nom}");
+        Console.WriteLine($"Nature : {nature}");
+        Console.WriteLine($"Saison préférée : {saisonPreferee}");
+        Console.WriteLine("Stade d'évolution :"); //ça je ne sais pas encore
+        Console.WriteLine($"Age :{age}"); 
+        Console.WriteLine("Prix : "); //on le définit avant ?
+    }
 
-
-
-    public override string AsciiArt =>
-        "   	  ⢶⣶⣿⣶⣶⣄⠀⠀⠀⠀⠀\n" +
-        "        ⠘⣿⣿⣿⣿⣿⣷⠀⠀\n" +
-        " 	        ⠈⠻⢿⣿⣿⣿⣧⡀⠀\n" +
-        " 	             ⠈⠻⣼⡇⠀⠀⠀\n" +
-        " ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⣦⢧⡣⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-        " ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⣘⣾⡍⠋⠐⢾⣟⣦⠅⡂⠀⠀⠀⠀⠀\n" +
-        " ⠀⠀⠀⠀⠀⠀⣀⠠⣀⣂⣒⡿⡝⠁⠀⠀⠀⢩⢻⣝⣤⣃⢦⡐⣠⢀⡀⡀⢀⠀⠀⠀⠀⠀\n" +
-        " ⠀⠄⢂⢥⣞⣵⣾⣳⣯⢷⠷⠷⠈⠀⢀⡀⠀⠀⠙⠦⠻⠯⢷⡿⠧⠍⠈⢷⣣⠌⠀⠀⠀\n" +
-        " ⠈⠔⢫⡊⣼⡟⠊⡑⠀⠂⠈⠀⠀⢀⠾⣟⡄⠀⠀⠀⠀⠀⠀⠀⣁⠔⠁⣺⠱⠈⠀⠀⠀\n" +
-        "  ⠈⠄⠙⠹⣟⣦⡀⠀⠀⠐⠶⠼⣵⠂⠘⠒⠿⡟⠃⠀⠀⣠⣾⣟⡟⢎⠁⠂⠀\n" +
-        " ⠀⠀⠀⠈⠐⢈⠛⠿⣳⡄⠀⠀⠀⠐⠀⠀⣰⠒⠀⠀⢀⡾⢋⠃⡜⠌⠀⠀⠀⠀⠀\n" +
-        " ⠀⠀⠀⠀⠀⠀⡐⢰⣟⠋⠀⠀⠸⠆⠄⠀⠈⠿⠄⠀⠀⡅⠀⣠⠜⠀⠀⠀⠀⠀⠀\n" +
-        " ⠀⠀⠀⠀⠀⢀⢀⣻⡝⠀⠀⠀⠀⠀⣀⣀⢄⠀⠀⠀⠀⠀⠘⣌⢒⠀⠀⠀\n" +
-        " ⠀⠀ ⠀⠀⠀⠀⢯⢿⣠⣀⣤⣶⢿⡻⢟⢿⡻⣦⣤⣀⠐⠈⣜⡣⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-        " ⠀⠀⠀⠀⠀⠀⢄⡻⠞⢾⡻⡝⢎⠊⡑⠈⠂⡑⠑⢎⠻⣃⣐⣦⡛⠄⠀⠀⠀⠀⠀⠀\n" +
-        " ⠀⠀⠀⠀⠀⠈⠤⠙⡩⢃⠡⠐⠀⠀⠀⠀⠀⠀⠀⠀⠂⠡⠘⠠⠑⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
-
+    public override void AsciiArt()
+    {
+        Console.WriteLine("   	  ⢶⣶⣿⣶⣶⣄⠀⠀⠀⠀⠀");
+        Console.WriteLine("        ⠘⣿⣿⣿⣿⣿⣷⠀⠀");
+        Console.WriteLine(" 	        ⠈⠻⢿⣿⣿⣿⣧⡀⠀");
+        Console.WriteLine(" 	             ⠈⠻⣼⡇⠀⠀⠀");
+        Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⣦⢧⡣⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⣘⣾⡍⠋⠐⢾⣟⣦⠅⡂⠀⠀⠀⠀⠀");
+        Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⣀⠠⣀⣂⣒⡿⡝⠁⠀⠀⠀⢩⢻⣝⣤⣃⢦⡐⣠⢀⡀⡀⢀⠀⠀⠀⠀⠀");
+        Console.WriteLine(" ⠀⠄⢂⢥⣞⣵⣾⣳⣯⢷⠷⠷⠈⠀⢀⡀⠀⠀⠙⠦⠻⠯⢷⡿⠧⠍⠈⢷⣣⠌⠀⠀⠀");
+        Console.WriteLine(" ⠈⠔⢫⡊⣼⡟⠊⡑⠀⠂⠈⠀⠀⢀⠾⣟⡄⠀⠀⠀⠀⠀⠀⠀⣁⠔⠁⣺⠱⠈⠀⠀⠀");
+        Console.WriteLine("  ⠈⠄⠙⠹⣟⣦⡀⠀⠀⠐⠶⠼⣵⠂⠘⠒⠿⡟⠃⠀⠀⣠⣾⣟⡟⢎⠁⠂⠀");
+        Console.WriteLine(" ⠀⠀⠀⠈⠐⢈⠛⠿⣳⡄⠀⠀⠀⠐⠀⠀⣰⠒⠀⠀⢀⡾⢋⠃⡜⠌⠀⠀⠀⠀⠀");
+        Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⡐⢰⣟⠋⠀⠀⠸⠆⠄⠀⠈⠿⠄⠀⠀⡅⠀⣠⠜⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine(" ⠀⠀⠀⠀⠀⢀⢀⣻⡝⠀⠀⠀⠀⠀⣀⣀⢄⠀⠀⠀⠀⠀⠘⣌⢒⠀⠀⠀");
+        Console.WriteLine(" ⠀⠀ ⠀⠀⠀⠀⢯⢿⣠⣀⣤⣶⢿⡻⢟⢿⡻⣦⣤⣀⠐⠈⣜⡣⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine(" ⠀⠀⠀⠀⠀⠀⢄⡻⠞⢾⡻⡝⢎⠊⡑⠈⠂⡑⠑⢎⠻⣃⣐⣦⡛⠄⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine(" ⠀⠀⠀⠀⠀⠈⠤⠙⡩⢃⠡⠐⠀⠀⠀⠀⠀⠀⠀⠀⠂⠡⠘⠠⠑⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+    }
 }
