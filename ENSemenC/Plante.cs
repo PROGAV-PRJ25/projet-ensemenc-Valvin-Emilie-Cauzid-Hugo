@@ -131,7 +131,7 @@ public abstract class Plante
     { }
     public abstract string AfficherPlateau2();
     public abstract void GetCouleur();
-    public abstract string AsciiArt { get; }
-    public abstract string Informations { get; }
+    public abstract void AsciiArt();
+    public abstract void Informations();
 
 }
