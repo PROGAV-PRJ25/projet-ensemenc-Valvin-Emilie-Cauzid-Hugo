@@ -31,7 +31,7 @@ public class Simulation
     }
 
 
-    public void AgrandirPlateau2()
+    public void AgrandirPlateau()
     {
         List<Terrain?> nouvelleLigne = new List<Terrain?> { };
         // Ajout d'une ligne de terrains vide
@@ -48,7 +48,7 @@ public class Simulation
         }
     }
 
-    public void AjouterTerrain2(Terrain terrain)
+    public void AjouterTerrain(Terrain terrain)
     {
         // Ajout terrain dans le plateau + MAJ de la position du terrain dans l'itération
         plateau[positionJoueur[1]][positionJoueur[0]] = terrain;
@@ -57,7 +57,7 @@ public class Simulation
         nbTerrain++;
         if (nbTerrain == cote * cote && cote <= 10)
         {
-            AgrandirPlateau2();
+            AgrandirPlateau();
             cote++;
         }
     }
@@ -729,18 +729,18 @@ public class Simulation
         int finJ = Math.Min(position[1] + espacement, plateau[0].Count() - 1);
         for (int i = departI; i <= finI; i++)
         {
-            Console.WriteLine($"Boucle i : {i} / Position : {position[0]} / espacement : {espacement}");
+            // Console.WriteLine($"Boucle i : {i} / Position : {position[0]} / espacement : {espacement}");
             for (int j = departJ; j <= finJ; j++)
             {
-                Console.WriteLine($"Boucle j : {j} / Position : {position[1]} / espacement : {espacement}");
+                // Console.WriteLine($"Boucle j : {j} / Position : {position[1]} / espacement : {espacement}");
                 if ((i != position[0] || j != position[1]) && plateau[j][i] != null && plateau[j][i]!.plante != null)
                 {
                     result++;
                 }
             }
         }
-        Console.WriteLine(result);
-        System.Threading.Thread.Sleep(1000);
+        // Console.WriteLine(result);
+        // System.Threading.Thread.Sleep(1000);
         return result;
     }
 
@@ -793,7 +793,7 @@ public class Simulation
                 Terrain? nvTerrain = ChoixTerrain();
                 if (nvTerrain != null)
                 {
-                    AjouterTerrain2(nvTerrain);
+                    AjouterTerrain(nvTerrain);
                 }
             }
 
@@ -845,6 +845,7 @@ public class Simulation
         }
         while (action != 7);
     }
+
     public void AfficherInventaire()
     {
         //afficher la date
