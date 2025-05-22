@@ -69,22 +69,22 @@ public abstract class Plante
                 pourcentage += 5;
             }
 
-            if (Terrain.luminosite > besoinsLuminosite[0] && Terrain.luminosite < besoinsLuminosite[1])
+            if (terrain.luminosite > besoinsLuminosite[0] && terrain.luminosite < besoinsLuminosite[1])
             {
                 // Console.WriteLine("Luminosité OK");
                 pourcentage += 20;
             }
-            else if (Terrain.luminosite > besoinsLuminosite[0] * 0.95 && Terrain.luminosite < besoinsLuminosite[1] * 1.05)
+            else if (terrain.luminosite > besoinsLuminosite[0] * 0.95 && terrain.luminosite < besoinsLuminosite[1] * 1.05)
             {
                 // Console.WriteLine("Luminosité presque OK");
                 pourcentage += 15;
             }
-            else if (Terrain.luminosite > besoinsLuminosite[0] * 0.90 && Terrain.luminosite < besoinsLuminosite[1] * 1.10)
+            else if (terrain.luminosite > besoinsLuminosite[0] * 0.90 && terrain.luminosite < besoinsLuminosite[1] * 1.10)
             {
                 // Console.WriteLine("Luminosité moyen OK");
                 pourcentage += 10;
             }
-            else if (Terrain.luminosite > besoinsLuminosite[0] * 0.85 && Terrain.luminosite < besoinsLuminosite[1] * 1.15)
+            else if (terrain.luminosite > besoinsLuminosite[0] * 0.85 && terrain.luminosite < besoinsLuminosite[1] * 1.15)
             {
                 // Console.WriteLine("Luminosité pas trop OK");
                 pourcentage += 5;

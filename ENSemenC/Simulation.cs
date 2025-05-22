@@ -28,6 +28,7 @@ public class Simulation
         date = DateTime.Today;
         nbTerrain = 0;
         cote = 2;
+        MajMeteo();
     }
 
 
@@ -76,10 +77,9 @@ public class Simulation
 
         //afficher la date
         DateTime thisDay = DateTime.Today;
-        Console.WriteLine(thisDay.ToString("D"));
+        Console.WriteLine(date.ToString("D"));
         Console.WriteLine($"Saison : {Terrain.saison}");
         Console.WriteLine($"Météo : {Terrain.meteo}");
-        Console.WriteLine($"Luminosité : {Terrain.luminosite}");
         bool coulFond = true;
         int largeur = plateau.Count;
         int longueur = plateau[0].Count;
@@ -696,29 +696,27 @@ public class Simulation
         Terrain.meteo = meteo;
 
         // Crue et ajout de l'eau sur les sols si pluie/orage/neige
-        if (meteo == Meteo.Pluie || meteo == Meteo.Neige)
+        foreach (List<Terrain?> liste in plateau)
         {
-            foreach (List<Terrain?> liste in plateau)
+            foreach (Terrain? terrain in liste)
             {
-                foreach (Terrain? terrain in liste)
+                if (meteo == Meteo.Pluie || meteo == Meteo.Neige)
                 {
                     if (terrain != null)
                     {
                         terrain.HumidificationSol(0.2 + Math.Pow(-1, rng.Next(0, 2)) * rng.Next(0, 21) * 0.01);
                     }
                 }
-            }
-        }
-        else if (meteo == Meteo.Orage)
-        {
-            foreach (List<Terrain?> liste in plateau)
-            {
-                foreach (Terrain? terrain in liste)
+                else if (meteo == Meteo.Orage)
                 {
                     if (terrain != null)
                     {
                         terrain.HumidificationSol(0.4 + Math.Pow(-1, rng.Next(0, 2)) * rng.Next(0, 41) * 0.01);
                     }
+                }
+                if (terrain != null)
+                {
+                    terrain.GererLumiere();
                 }
             }
         }
@@ -756,9 +754,84 @@ public class Simulation
             {
                 plante.Grandir(CalculerNbVoisins(plante.terrain.position!, plante.espacement));
                 plante.terrain.AdaptationSol();
+                /*if (plante.GetType() == typeof(FiletDuDiable))
+                {
+                    Console.WriteLine("a");
+                    System.Threading.Thread.Sleep(1000);
+                    int aleatoire = rng.Next(0, 4);
+                    bool invasion = false;
+                    int[] anciennePosition = new int[2];
+                    anciennePosition[0] = positionJoueur[0];
+                    anciennePosition[1] = positionJoueur[1];
+                    switch (aleatoire)
+                    {
+                        case 0:
+                            if (plante.terrain.position![0] - 1 >= 0 && plateau[plante.terrain.position![0] - 1][plante.terrain.position![1]] != null && plateau[plante.terrain.position![0] - 1][plante.terrain.position![1]]!.plante == null)
+                            {
+                                invasion = true;
+                                positionJoueur[0] = plante.terrain.position![1];
+                                positionJoueur[1] = plante.terrain.position![0] - 1;
+                            }
+                            break;
+
+                        case 1:
+                            if (plante.terrain.position![1] + 1 < plateau[0].Count && plateau[plante.terrain.position![0]][plante.terrain.position![1] + 1] != null && plateau[plante.terrain.position![0]][plante.terrain.position![1] + 1]!.plante == null)
+                            {
+                                invasion = true;
+                                positionJoueur[0] = plante.terrain.position![1] + 1;
+                                positionJoueur[1] = plante.terrain.position![0];
+                            }
+                            break;
+
+                        case 2:
+                            if (plante.terrain.position![0] + 1 < plateau.Count && plateau[plante.terrain.position![0] + 1][plante.terrain.position![1]] != null && plateau[plante.terrain.position![0] + 1][plante.terrain.position![1]]!.plante == null)
+                            {
+                                invasion = true;
+                                positionJoueur[0] = plante.terrain.position![1];
+                                positionJoueur[1] = plante.terrain.position![0] + 1;
+                            }
+                            break;
+
+                        case 3:
+                            if (plante.terrain.position![1] - 1 >= 0 && plateau[plante.terrain.position![0]][plante.terrain.position![1] - 1] != null && plateau[plante.terrain.position![0]][plante.terrain.position![1] - 1]!.plante == null)
+                            {
+                                invasion = true;
+                                positionJoueur[0] = plante.terrain.position![1] - 1;
+                                positionJoueur[1] = plante.terrain.position![0];
+                            }
+                            break;
+
+                        default:
+                            invasion = false;
+                            break;
+                    }
+                    if (invasion)
+                    {
+                        AjouterPlante(new FiletDuDiable(plateau[positionJoueur[1]][positionJoueur[0]]!));
+                    }
+                    positionJoueur[0] = anciennePosition[0];
+                    positionJoueur[1] = anciennePosition[1];
+                }*/
             }
             date = date.AddDays(1);
             MajMeteo();
+            foreach (List<Terrain?> liste in plateau)
+            {
+                foreach (Terrain? terrain in liste)
+                {
+                    if (terrain != null && terrain.plante == null && rng.Next(0, 21) == 0)
+                    {
+                        int[] anciennePosition = new int[2];
+                        anciennePosition[0] = positionJoueur[0];
+                        anciennePosition[1] = positionJoueur[1];
+                        positionJoueur[0] = terrain.position![1];
+                        positionJoueur[1] = terrain.position![0];
+                        AjouterPlante(new FiletDuDiable(terrain));
+                        positionJoueur[0] = anciennePosition[0];
+                        positionJoueur[1] = anciennePosition[1];
+                    }
+                }
+            }
         }
         AfficherInventaire(); // Affiche la liste des plantes et leur nombre
         Console.WriteLine("Appuyer sur entrée pour continuer : ");
@@ -814,15 +887,24 @@ public class Simulation
             else if (action == 4)
             {
                 // Afficher infos sur le terrain et plante s'il y en a une
-                Console.WriteLine($"Sur ce terrain, la température est de {plateau[positionJoueur[1]][positionJoueur[0]].temperature}, l'humidité de {plateau[positionJoueur[1]][positionJoueur[0]].humidite} et le taux de retention {plateau[positionJoueur[1]][positionJoueur[0]].retention}");
+                Console.Clear();
+                AfficherPlateau();
+                Console.WriteLine($"Sur ce terrain, la température est de {plateau[positionJoueur[1]][positionJoueur[0]]!.temperature}, l'humidité de {plateau[positionJoueur[1]][positionJoueur[0]]!.humidite}, le taux de retention d'eau de {plateau[positionJoueur[1]][positionJoueur[0]]!.retention} et la luminosité de {plateau[positionJoueur[1]][positionJoueur[0]]!.luminosite}");
                 bool testPlante = plateau[positionJoueur[1]][positionJoueur[0]]!.plante != null;
                 if (testPlante)
                 {
-                    plateau[positionJoueur[1]][positionJoueur[0]]!.plante.AsciiArt();
-                    plateau[positionJoueur[1]][positionJoueur[0]]!.plante.Informations();
+                    if (plateau[positionJoueur[1]][positionJoueur[0]]!.plante!.vivante)
+                    {
+                        plateau[positionJoueur[1]][positionJoueur[0]]!.plante!.AsciiArt();
+                        plateau[positionJoueur[1]][positionJoueur[0]]!.plante!.Informations();
+                    }
+                    else
+                    {
+                        Console.WriteLine("La plante est morte...");
+                    }
                 }
-                
-
+                Console.WriteLine("Appuyer sur entrée pour continuer : ");
+                Console.ReadLine();
             }
 
             else if (action == 5)
@@ -891,10 +973,10 @@ public class Simulation
             }
         }
         Console.WriteLine("Inventaire :");
-        Console.Write($"{nombreBranchiflore} 🌿");
-        Console.Write($"{nombreFiletDuDiable} 👿");
-        Console.Write($"{nombreFruitEtoile} ⭐");
-        Console.Write($"{nombreMandragore} 🌱");
-        Console.Write($"{nombreRoseDeFee} 🌷");
+        Console.Write($"{nombreBranchiflore} 🌿\t");
+        Console.Write($"{nombreFiletDuDiable} 👿\t");
+        Console.Write($"{nombreFruitEtoile} ⭐\t");
+        Console.Write($"{nombreMandragore} 🌱\t");
+        Console.WriteLine($"{nombreRoseDeFee} 🌷\t");
     }
 }
