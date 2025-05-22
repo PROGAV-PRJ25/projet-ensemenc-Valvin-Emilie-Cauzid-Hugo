@@ -51,3 +51,10 @@ E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.
 E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.dll
 E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\refint\ENSemenC.dll
 E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.pdb
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.exe
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.deps.json
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.runtimeconfig.json
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.dll
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\bin\Debug\net8.0\ENSemenC.pdb
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ENSemenC.genruntimeconfig.cache
+E:\projet-ensemenc-Valvin-Emilie-Cauzid-Hugo\ENSemenC\obj\Debug\net8.0\ref\ENSemenC.dll

@@ -814,7 +814,7 @@ public class Simulation
             else if (action == 4)
             {
                 // Afficher infos sur le terrain et plante s'il y en a une
-                Console.WriteLine($"Sur ce terrain, la température est de {terrain.temperature}, l'humidité de {Terrain.humidite} et le taux de retention {Terrain.retention}");
+                Console.WriteLine($"Sur ce terrain, la température est de {plateau[positionJoueur[1]][positionJoueur[0]].temperature}, l'humidité de {plateau[positionJoueur[1]][positionJoueur[0]].humidite} et le taux de retention {plateau[positionJoueur[1]][positionJoueur[0]].retention}");
                 bool testPlante = plateau[positionJoueur[1]][positionJoueur[0]]!.plante != null;
                 if (testPlante)
                 {
