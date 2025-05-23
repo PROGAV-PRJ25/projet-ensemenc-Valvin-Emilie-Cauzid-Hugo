@@ -107,7 +107,7 @@ public abstract class Plante
         }
         else
         {
-            Console.WriteLine($"La plante est morte (RIP)");
+            // Console.WriteLine($"La plante est morte (RIP)");
         }
     }
 

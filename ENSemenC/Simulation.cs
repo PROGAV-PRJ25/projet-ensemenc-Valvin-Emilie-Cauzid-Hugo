@@ -352,7 +352,7 @@ public class Simulation
                 if (ratiboiseur.Position[0] == PositionJoueur[1] && ratiboiseur.Position[1] == PositionJoueur[0])
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\t- Chasser le ratiboiseur");
+                    Console.WriteLine("\t- Faire fuir le ratiboiseur");
                 }
             }
             else
