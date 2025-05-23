@@ -1,40 +1,40 @@
 public abstract class PlanteComestible : PlanteCommercialisable
 {
-    public bool aFruit { get; set; }
-    public int tempsRecharge { get; set; }
-    public int recharge { get; set; }
-    public PlanteComestible(string nom, Saison saisonPreferee, Terrain terrain, int espacement, double besoinsEauMin, double besoinsEauMax, double besoinsLuminositeMin, double besoinsLuminositeMax, int vitesseDeCroissance, int esperanceDeVie, int croissanceMin, int tempsRecharge, string nature = "comestible") : base(nom, saisonPreferee, terrain, espacement, besoinsEauMin, besoinsEauMax, besoinsLuminositeMin, besoinsLuminositeMax, vitesseDeCroissance, esperanceDeVie, croissanceMin, nature)
+    public bool AFruit { get; set; }
+    public int TempsRecharge { get; set; }
+    public int Recharge { get; set; }
+    public PlanteComestible(string nom, Saisons saisonPreferee, Terrain terrain, int espacement, double besoinsEauMin, double besoinsEauMax, double besoinsLuminositeMin, double besoinsLuminositeMax, int vitesseDeCroissance, int esperanceDeVie, int croissanceMin, int tempsRecharge, string nature = "comestible") : base(nom, saisonPreferee, terrain, espacement, besoinsEauMin, besoinsEauMax, besoinsLuminositeMin, besoinsLuminositeMax, vitesseDeCroissance, esperanceDeVie, croissanceMin, nature)
     {
-        aFruit = false;
-        this.tempsRecharge = tempsRecharge;
-        recharge = tempsRecharge;
+        AFruit = false;
+        TempsRecharge = tempsRecharge;
+        Recharge = tempsRecharge;
     }
 
     public void ProduireFruit()
     {
-        if (croissance >= croissanceMin)
+        if (Croissance >= CroissanceMin)
         {
-            if (recharge == 0)
+            if (Recharge == 0)
             {
-                aFruit = true;
+                AFruit = true;
             }
             else
             {
-                recharge--;
+                Recharge--;
             }
         }
     }
 
     public void Cueillir()
     {
-        aFruit = false;
-        recharge = tempsRecharge;
+        AFruit = false;
+        Recharge = TempsRecharge;
     }
 
     public override void Grandir(int nbVoisins)
     {
         base.Grandir(nbVoisins);
-        if (!aFruit)
+        if (!AFruit)
         {
             ProduireFruit();
         }
