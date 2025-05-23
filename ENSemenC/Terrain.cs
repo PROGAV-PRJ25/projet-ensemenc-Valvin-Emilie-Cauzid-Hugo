@@ -115,7 +115,7 @@ public abstract class Terrain
                         break;
 
                     case Meteo.Neige:
-                        temperature = Math.Round(baseTemperature[0][7] + Math.Pow(-1, rng.Next(0, 2)) * 0.1 * rng.Next(0, 2), 2);
+                        temperature = Math.Round(baseTemperature[0][5] + Math.Pow(-1, rng.Next(0, 2)) * 0.1 * rng.Next(0, 2), 2);
                         break;
 
                     default:
@@ -151,7 +151,7 @@ public abstract class Terrain
                         break;
 
                     case Meteo.Neige:
-                        temperature = Math.Round(baseTemperature[1][7] + Math.Pow(-1, rng.Next(0, 2)) * 0.1 * rng.Next(0, 1), 2);
+                        temperature = Math.Round(baseTemperature[1][5] + Math.Pow(-1, rng.Next(0, 2)) * 0.1 * rng.Next(0, 1), 2);
                         break;
 
                     default:
@@ -187,7 +187,7 @@ public abstract class Terrain
                         break;
 
                     case Meteo.Neige:
-                        temperature = Math.Round(baseTemperature[2][7] + Math.Pow(-1, rng.Next(0, 2)) * 0.1 * rng.Next(0, 1), 2);
+                        temperature = Math.Round(baseTemperature[2][5] + Math.Pow(-1, rng.Next(0, 2)) * 0.1 * rng.Next(0, 1), 2);
                         break;
 
                     default:
@@ -223,7 +223,7 @@ public abstract class Terrain
                         break;
 
                     case Meteo.Neige:
-                        temperature = Math.Round(baseTemperature[3][7] + Math.Pow(-1, rng.Next(0, 2)) * 0.1 * rng.Next(0, 20), 2);
+                        temperature = Math.Round(baseTemperature[3][5] + Math.Pow(-1, rng.Next(0, 2)) * 0.1 * rng.Next(0, 20), 2);
                         break;
 
                     default:
