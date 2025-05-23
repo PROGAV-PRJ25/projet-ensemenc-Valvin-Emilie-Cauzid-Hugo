@@ -28,7 +28,6 @@ public class RoseDeFee : PlanteOrnementale
         Console.WriteLine($"Nom : {nom}");
         Console.WriteLine($"Nature : {nature}");
         Console.WriteLine($"Saison préférée : {saisonPreferee}");
-        Console.WriteLine("Stade d'évolution :"); //ça je ne sais pas encore
         Console.WriteLine($"Age : {age} jours");
     }
 
