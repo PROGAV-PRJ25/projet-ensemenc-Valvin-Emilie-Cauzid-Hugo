@@ -3,7 +3,7 @@ public abstract class PlanteComestible : PlanteCommercialisable
     public bool aFruit { get; set; }
     public int tempsRecharge { get; set; }
     public int recharge { get; set; }
-    public PlanteComestible(string nom, Saison saisonPreferee, Terrain terrain, int espacement, int place, double besoinsEauMin, double besoinsEauMax, double besoinsLuminositeMin, double besoinsLuminositeMax, int vitesseDeCroissance, int esperanceDeVie, int croissanceMin, decimal prix, int tempsRecharge, string nature = "comestible") : base(nom, saisonPreferee, terrain, espacement, place, besoinsEauMin, besoinsEauMax, besoinsLuminositeMin, besoinsLuminositeMax, vitesseDeCroissance, esperanceDeVie, croissanceMin, prix, nature)
+    public PlanteComestible(string nom, Saison saisonPreferee, Terrain terrain, int espacement, double besoinsEauMin, double besoinsEauMax, double besoinsLuminositeMin, double besoinsLuminositeMax, int vitesseDeCroissance, int esperanceDeVie, int croissanceMin, int tempsRecharge, string nature = "comestible") : base(nom, saisonPreferee, terrain, espacement, besoinsEauMin, besoinsEauMax, besoinsLuminositeMin, besoinsLuminositeMax, vitesseDeCroissance, esperanceDeVie, croissanceMin, nature)
     {
         aFruit = false;
         this.tempsRecharge = tempsRecharge;

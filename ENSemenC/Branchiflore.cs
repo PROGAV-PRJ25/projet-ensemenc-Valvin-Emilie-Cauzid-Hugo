@@ -30,7 +30,6 @@ public class Branchiflore : PlanteCommercialisable
         Console.WriteLine($"Saison préférée : {saisonPreferee}");
         Console.WriteLine("Stade d'évolution :"); //ça je ne sais pas encore
         Console.WriteLine($"Age : {age} jours");
-        Console.WriteLine("Prix : "); //on le définit avant ?
     }
     public override void AsciiArt()
     {
